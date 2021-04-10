@@ -1,0 +1,22 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 6%;
+    margin: 6%;
+    /* border: .5px solid gray; */
+    width: 80%;
+    height: 45vh;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.603) 0px 1px 7px 0px;
+}
+
+.user-picture {
+    height: 8vh;
+    width: 8vh;
+    border-radius: 100%;
+}
+
+.card-specifics {
+    display: flex;
+    justify-content: space-evenly;
+}

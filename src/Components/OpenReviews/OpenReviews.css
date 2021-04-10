@@ -1,0 +1,14 @@
+.open-review-header{
+    text-align: center;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

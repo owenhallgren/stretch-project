@@ -4,6 +4,8 @@ import OpenReviews from '../OpenReviews/OpenReviews'
 import CurrentReviews from '../CurrentReviews/CurrentReviews'
 import './App.css';
 import { mockReviews } from '../../mockUserData'
+import { Route } from 'react-router-dom';
+
 
 class App extends Component {
   constructor() {
@@ -34,8 +36,13 @@ class App extends Component {
     return (
       <main>
         <Nav />
-        <OpenReviews openReviews={this.state.openReviews} addReview={this.addReview}/>
-        {/* <CurrentReviews state={this.state}/> */}
+        <Route exact path='/' render={() => 
+          <OpenReviews openReviews={this.state.openReviews} addReview={this.addReview}/>
+        }/>
+        <Route exact path='/dashboard' render={() => 
+                <CurrentReviews state={this.state}/>
+        }/>
+
       </main>
     )
   }

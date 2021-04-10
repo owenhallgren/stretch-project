@@ -3,7 +3,7 @@ import Card from '../Card/Card';
 import './OpenReviews.css';
 
 
-const OpenReviews = ( {openReviews} ) => {
+const OpenReviews = ( {openReviews, addReview} ) => {
     const filteredReviews = openReviews.filter(review => !review.reviewer)
     const allReviews = filteredReviews.map(review => {
         return (
@@ -12,6 +12,9 @@ const OpenReviews = ( {openReviews} ) => {
                 summary={review.summary}
                 language={review.language}
                 date={review.date}
+                id={review.id}
+                key={review.id}
+                addReview={addReview}
             />
         )
     })

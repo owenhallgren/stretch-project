@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import OpenReviews from '../OpenReviews/OpenReviews'
+import CurrentReviews from '../CurrentReviews/CurrentReviews'
 import { mockReviews } from '../../mockUserData'
 import './App.css';
 
@@ -20,7 +21,8 @@ class App extends Component {
     return (
       <main>
         <Nav />
-        <OpenReviews openReviews={this.state.openReviews}/>
+        {/* <OpenReviews openReviews={this.state.openReviews}/> */}
+        <CurrentReviews/>
       </main>
     )
   }

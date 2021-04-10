@@ -1,17 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import './Nav.css'
 
 const Nav = () => {
     return (
         <nav>
-            <Link to={'/'} className="link">
-                <button>Home</button>
-            </Link>
-            <Link to={'/dashboard'} className="link">
-                <button>Dashboard</button>
-            </Link>
-            <button>FAQ?</button>
+            <Route exact path='/dashboard' render={() => 
+                <Link to={'/'} className="link">
+                    <button>Home</button>
+                </Link>
+            }/>
+
+            <Route exact path='/' render={() => 
+                <Link to={'/dashboard'} className="link">
+                    <button>Dashboard</button>
+                </Link>
+            }/>
+
+            {/* <button>FAQ?</button> */}
         </nav>
     )
 }

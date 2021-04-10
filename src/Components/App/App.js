@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import OpenReviews from '../OpenReviews/OpenReviews'
 import CurrentReviews from '../CurrentReviews/CurrentReviews'
-import { mockReviews } from '../../mockUserData'
 import './App.css';
+import { mockReviews } from '../../mockUserData'
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      openReviews: []
+      openReviews: [],
+      user: 'Jackson'
     }
   }
 
@@ -17,12 +18,14 @@ class App extends Component {
     this.setState( {openReviews: mockReviews} )
   }
 
+
   render() {
     return (
       <main>
         <Nav />
         {/* <OpenReviews openReviews={this.state.openReviews}/> */}
-        <CurrentReviews/>
+        {/* <CurrentReviews user={this.state.user} openReviews={this.state.openReviews}/> */}
+        <CurrentReviews state={this.state}/>
       </main>
     )
   }

@@ -12,3 +12,8 @@
     flex-direction: column;
     align-items: center;
 }
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+}

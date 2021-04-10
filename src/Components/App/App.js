@@ -20,17 +20,12 @@ class App extends Component {
 
   addReview = (id) => {
     const updatedReviews = this.state.openReviews.map(review => {
-      console.log(`review id ${review.id}`)
-      console.log(id)
       if(review.id === parseInt(id)) {
         review.reviewer = this.state.user
       }
       return review  
     })
-
-    console.log(updatedReviews)
     this.setState({openReviews: updatedReviews})
-    console.log(this.state.openReviews)
   }
   
 

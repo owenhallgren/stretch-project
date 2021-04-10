@@ -13,6 +13,9 @@ const OpenReviews = () => {
             </div>
             <section className='card-container'>
                 <Card />
+                <Card />
+                <Card />
+                <Card />
             </section>
         </body>
     )

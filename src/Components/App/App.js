@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Nav from '../Nav/Nav'
 import './App.css';
 
 class App extends Component {
@@ -8,9 +9,9 @@ class App extends Component {
 
   render() {
     return (
-      <section>
-        <h1>here</h1>
-      </section>
+      <main>
+        <Nav />
+      </main>
     )
   }
 }

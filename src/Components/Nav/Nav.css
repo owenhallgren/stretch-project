@@ -1,0 +1,6 @@
+nav {
+    background-color: rgb(88, 88, 88);
+    height: 8vh;
+    display: flex;
+    justify-content: space-evenly;
+}

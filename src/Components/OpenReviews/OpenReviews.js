@@ -3,7 +3,17 @@ import Card from '../Card/Card';
 import './OpenReviews.css';
 
 
-const OpenReviews = () => {
+const OpenReviews = ( {openReviews} ) => {
+    const allReviews = openReviews.map(review => {
+        return (
+            <Card
+                username={review.username}
+                summary={review.summary}
+                language={review.language}
+                date={review.date}
+            />
+        )
+    })
     return (
         <body>
             <h1 className='open-review-header'>Open Review Requests</h1>
@@ -12,10 +22,7 @@ const OpenReviews = () => {
                 <p>Language</p>
             </div>
             <section className='card-container'>
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {allReviews}
             </section>
         </body>
     )

@@ -6,8 +6,8 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
   const reviewTable = matchedReviews.map(review => {
     return(
       <tr key={review.id}>
-          <td>{review.username}</td>
           <td>{review.date}</td>
+          <td>{review.username}</td>
           <td><a href={review.repo} target='_blank' rel="noreferrer">{review.repo}</a></td>
           <td>{review.email}</td>
           <td><button className='complete-button' id={review.id} onClick={(e) => finishReview(e)}>Complete</button></td>
@@ -20,8 +20,8 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
   const completedReviewTable = completedReviews.map(review => {
     return(
       <tr key={review.id}>
-          <td>{review.username}</td>
           <td>{review.date}</td>
+          <td>{review.username}</td>
           <td><a href={review.repo} target='_blank' rel="noreferrer">{review.repo}</a></td>
           <td>{review.email}</td>
           <td><button className='undo-button' id={review.id} onClick={(e) => undoReview(e)}>Undo</button></td>
@@ -35,11 +35,11 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
         <table>
         <thead>
             <tr>
-                <th>Name</th>
                 <th>Date</th>
+                <th>Name</th>
                 <th>Repo</th>
                 <th>Email</th>
-                <th>Status</th>
+                <th></th>
                 <th></th>
         </tr>
         </thead>
@@ -52,11 +52,10 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
         <table>
         <thead>
             <tr>
-                <th>Name</th>
                 <th>Date</th>
+                <th>Name</th>
                 <th>Repo</th>
                 <th>Email</th>
-                <th></th>
                 <th></th>
         </tr>
         </thead>

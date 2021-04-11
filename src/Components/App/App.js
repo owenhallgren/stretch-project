@@ -43,6 +43,16 @@ sortByLanguage = (language) => {
   }
 }
 
+finishReview = (e) => {
+  const completedReview = this.state.openReviews.map(review => {
+    if(review.id === parseInt(e.target.id)) {
+      review.status = 'complete'
+    }
+    return review
+  })
+  this.setState({ openReviews: completedReview })
+}
+
   render() {
     return (
       <main>
@@ -56,7 +66,7 @@ sortByLanguage = (language) => {
             addReview={this.addReview}/>
           }/>
         <Route exact path='/dashboard' render={() => 
-                <CurrentReviews state={this.state}/>
+                <CurrentReviews state={this.state} finishReview={this.finishReview}/>
         }/>
 
       </main>

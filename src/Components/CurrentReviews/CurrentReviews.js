@@ -1,7 +1,7 @@
 import React from 'react'
 import './CurrentReviews.css'
 
-const CurrentReviews = ( {state} ) => {
+const CurrentReviews = ( { state, finishReview } ) => {
   const matchedReviews = state.openReviews.filter(review => review.reviewer === state.user && !review.status)
   const reviewTable = matchedReviews.map(review => {
     return(
@@ -10,7 +10,7 @@ const CurrentReviews = ( {state} ) => {
           <td>{review.date}</td>
           <td><a href={review.repo} target='_blank' rel="noreferrer">{review.repo}</a></td>
           <td>{review.email}</td>
-          <td><button className='complete-button'>Complete</button></td>
+          <td><button className='complete-button' id={review.id} onClick={(e) => finishReview(e)}>Complete</button></td>
       </tr>
     )
   })

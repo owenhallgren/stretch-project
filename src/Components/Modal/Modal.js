@@ -1,11 +1,11 @@
 import React from 'react'
 import Popup from 'reactjs-popup'
-import 'reactjs-popup/dist/index.css';
+import './Modal.css'
 
 const Modal = ({addReview, id}) => { 
   return (
     <Popup
-    trigger={<button className="button"> Open Modal </button>}
+    trigger={<button className="accept-button"> Accept Review </button>}
     modal
     nested
     >
@@ -23,7 +23,7 @@ const Modal = ({addReview, id}) => {
         </div>
         <div className="actions">
           <button id={id} className='review-button' onClick = {(e) => addReview(e.target.id)}> 
-          Accept Review
+          Confirm 
           </button>
         </div>
       </div>

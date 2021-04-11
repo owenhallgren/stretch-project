@@ -4,8 +4,9 @@ import Form from '../Form/Form'
 import './OpenReviews.css';
 
 
-const OpenReviews = ( {openReviews, addReview, filteredReviews} ) => {
-    const reviewsToMap = filteredReviews.length ? filteredReviews : openReviews
+const OpenReviews = ( {openReviews, addReview, filteredReviews, sortByLanguage, noFilteredReviews} ) => {
+    console.log('noF', noFilteredReviews)
+  const reviewsToMap = filteredReviews.length ? filteredReviews : openReviews
     const reviews = reviewsToMap.filter(review => !review.reviewer)
     const allReviews = reviews.map(review => {
         return (
@@ -21,17 +22,17 @@ const OpenReviews = ( {openReviews, addReview, filteredReviews} ) => {
         )
     })
     return (
+
         <div>
             <h1 className='open-review-header'>Open Review Requests</h1>
-            <Form />
-                        {/* <div className='filters'>
-                <p>Date</p>
-                <p>Language</p>
-            </div> */}
+            <Form sortByLanguage={sortByLanguage} />
+
+              {noFilteredReviews && <p>no reviews</p>}
             <section className='card-container'>
-                {allReviews}
+                {!noFilteredReviews && allReviews}
             </section>
         </div>
+        
     )
 }
 

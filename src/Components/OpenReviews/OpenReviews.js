@@ -5,8 +5,7 @@ import './OpenReviews.css';
 
 
 const OpenReviews = ( {openReviews, addReview, filteredReviews, sortByLanguage, noFilteredReviews} ) => {
-    console.log('noF', noFilteredReviews)
-  const reviewsToMap = filteredReviews.length ? filteredReviews : openReviews
+    const reviewsToMap = filteredReviews.length ? filteredReviews : openReviews
     const reviews = reviewsToMap.filter(review => !review.reviewer)
     const allReviews = reviews.map(review => {
         return (

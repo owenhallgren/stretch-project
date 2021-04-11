@@ -1,7 +1,7 @@
 import React from 'react'
 import './CurrentReviews.css'
 
-const CurrentReviews = ( { state, finishReview } ) => {
+const CurrentReviews = ( { state, finishReview, undoReview } ) => {
   const matchedReviews = state.openReviews.filter(review => review.reviewer === state.user && !review.status)
   const reviewTable = matchedReviews.map(review => {
     return(
@@ -23,7 +23,7 @@ const CurrentReviews = ( { state, finishReview } ) => {
           <td>{review.date}</td>
           <td><a href={review.repo} target='_blank' rel="noreferrer">{review.repo}</a></td>
           <td>{review.email}</td>
-          <td>Completed</td>
+          <td><button className='undo-button' id={review.id} onClick={(e) => undoReview(e)}>Undo</button></td>
       </tr>
     )
   })
@@ -55,7 +55,7 @@ const CurrentReviews = ( { state, finishReview } ) => {
                 <th>Date</th>
                 <th>Repo</th>
                 <th>Email</th>
-                <th>Status</th>
+                <th></th>
                 <th></th>
         </tr>
         </thead>

@@ -53,6 +53,16 @@ finishReview = (e) => {
   this.setState({ openReviews: completedReview })
 }
 
+undoReview = (e) => {
+  const undoReview = this.state.openReviews.map(review => {
+    if(review.id === parseInt(e.target.id)) {
+      review.status = ''
+    }
+    return review
+  })
+  this.setState({ openReviews: undoReview })
+}
+
   render() {
     return (
       <main>
@@ -66,7 +76,7 @@ finishReview = (e) => {
             addReview={this.addReview}/>
           }/>
         <Route exact path='/dashboard' render={() => 
-                <CurrentReviews state={this.state} finishReview={this.finishReview}/>
+                <CurrentReviews state={this.state} finishReview={this.finishReview} undoReview={this.undoReview}/>
         }/>
 
       </main>

@@ -26,6 +26,7 @@ class App extends Component {
     const updatedReviews = this.state.openReviews.map(review => {
       if(review.id === parseInt(id)) {
         review.reviewer = this.state.user
+        review.status = 'Active'
       }
       return review  
     })

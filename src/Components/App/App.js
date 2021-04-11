@@ -12,7 +12,9 @@ class App extends Component {
     super();
     this.state = {
       openReviews: [],
-      user: 'Jackson'
+      filteredReviews: [],
+      user: 'Jackson',
+      noFilteredReviews: false
     }
   }
 
@@ -30,15 +32,30 @@ class App extends Component {
     this.setState({openReviews: updatedReviews})
   }
   
+sortByLanguage = (language) => {
+  console.log(language)
+  const filteredReviews = this.state.openReviews.filter(review => review.language === language && !review.reviewer)
+  console.log(filteredReviews)
 
+  if(filteredReviews.length){
+    this.setState({ filteredReviews: filteredReviews, noFilteredReviews: false })
+  } else {
+    this.setState({ noFilteredReviews: true })
+  }
+}
 
   render() {
     return (
       <main>
         <Nav />
         <Route exact path='/' render={() => 
-          <OpenReviews openReviews={this.state.openReviews} addReview={this.addReview}/>
-        }/>
+          <OpenReviews
+            noFilteredReviews={this.state.noFilteredReviews}
+            sortByLanguage={this.sortByLanguage} 
+            openReviews={this.state.openReviews} 
+            filteredReviews={this.state.filteredReviews}
+            addReview={this.addReview}/>
+          }/>
         <Route exact path='/dashboard' render={() => 
                 <CurrentReviews state={this.state}/>
         }/>

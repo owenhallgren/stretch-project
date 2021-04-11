@@ -9,6 +9,7 @@ const CurrentReviews = ( {state} ) => {
           <td>{review.username}</td>
           <td>{review.date}</td>
           <td>{review.repo}</td>
+          <td>{review.email}</td>
           <td>{review.status}</td>
       </tr>
     )
@@ -22,6 +23,7 @@ const CurrentReviews = ( {state} ) => {
                 <th>Name</th>
                 <th>Date</th>
                 <th>Repo</th>
+                <th>Email</th>
                 <th>Status</th>
                 <th></th>
         </tr>

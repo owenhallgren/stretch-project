@@ -1,8 +1,8 @@
 import React from 'react'
 import './CurrentReviews.css'
 
-const CurrentReviews = ( { state, finishReview, undoReview } ) => {
-  const matchedReviews = state.openReviews.filter(review => review.reviewer === state.user && !review.status)
+const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
+  const matchedReviews = state.openReviews.filter(review => review.reviewer === state.user && review.status === 'active')
   const reviewTable = matchedReviews.map(review => {
     return(
       <tr key={review.id}>
@@ -11,6 +11,7 @@ const CurrentReviews = ( { state, finishReview, undoReview } ) => {
           <td><a href={review.repo} target='_blank' rel="noreferrer">{review.repo}</a></td>
           <td>{review.email}</td>
           <td><button className='complete-button' id={review.id} onClick={(e) => finishReview(e)}>Complete</button></td>
+          <td><button className='cancel-button' id={review.id} onClick={(e) => cancelReview(e)}>X</button></td>
       </tr>
     )
   })

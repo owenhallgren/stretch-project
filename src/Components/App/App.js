@@ -26,7 +26,7 @@ class App extends Component {
     const updatedReviews = this.state.openReviews.map(review => {
       if(review.id === parseInt(id)) {
         review.reviewer = this.state.user
-        review.status = 'Active'
+        review.status = 'active'
       }
       return review  
     })
@@ -56,13 +56,24 @@ finishReview = (e) => {
 undoReview = (e) => {
   const undoReview = this.state.openReviews.map(review => {
     if(review.id === parseInt(e.target.id)) {
-      review.status = ''
+      review.status = 'active'
     }
     return review
   })
   this.setState({ openReviews: undoReview })
 }
 
+
+cancelReview = (e) => {
+  const cancelledReview = this.state.openReviews.map(review => {
+    if(review.id === parseInt(e.target.id)) {
+      review.status = ''
+      review.reviewer = ''
+    }
+    return review
+  })
+  this.setState({ openReviews: cancelledReview })
+}
   render() {
     return (
       <main>
@@ -76,7 +87,7 @@ undoReview = (e) => {
             addReview={this.addReview}/>
           }/>
         <Route exact path='/dashboard' render={() => 
-                <CurrentReviews state={this.state} finishReview={this.finishReview} undoReview={this.undoReview}/>
+                <CurrentReviews state={this.state} finishReview={this.finishReview} undoReview={this.undoReview} cancelReview={this.cancelReview}/>
         }/>
 
       </main>

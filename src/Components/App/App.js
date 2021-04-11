@@ -12,6 +12,7 @@ class App extends Component {
     super();
     this.state = {
       openReviews: [],
+      filteredReviews: [],
       user: 'Jackson'
     }
   }
@@ -37,7 +38,8 @@ class App extends Component {
       <main>
         <Nav />
         <Route exact path='/' render={() => 
-          <OpenReviews openReviews={this.state.openReviews} addReview={this.addReview}/>
+          <OpenReviews openReviews={this.state.openReviews} filteredReviews={this.state.filteredReviews}
+           addReview={this.addReview}/>
         }/>
         <Route exact path='/dashboard' render={() => 
                 <CurrentReviews state={this.state}/>

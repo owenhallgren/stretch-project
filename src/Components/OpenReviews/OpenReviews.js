@@ -1,11 +1,13 @@
 import React from 'react';
 import Card from '../Card/Card';
+import Form from '../Form/Form'
 import './OpenReviews.css';
 
 
-const OpenReviews = ( {openReviews, addReview} ) => {
-    const filteredReviews = openReviews.filter(review => !review.reviewer)
-    const allReviews = filteredReviews.map(review => {
+const OpenReviews = ( {openReviews, addReview, filteredReviews} ) => {
+    const reviewsToMap = filteredReviews.length ? filteredReviews : openReviews
+    const reviews = reviewsToMap.filter(review => !review.reviewer)
+    const allReviews = reviews.map(review => {
         return (
             <Card
                 username={review.username}
@@ -21,10 +23,11 @@ const OpenReviews = ( {openReviews, addReview} ) => {
     return (
         <div>
             <h1 className='open-review-header'>Open Review Requests</h1>
-            <div className='filters'>
+            <Form />
+                        {/* <div className='filters'>
                 <p>Date</p>
                 <p>Language</p>
-            </div>
+            </div> */}
             <section className='card-container'>
                 {allReviews}
             </section>

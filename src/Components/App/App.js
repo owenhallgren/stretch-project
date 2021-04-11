@@ -26,6 +26,7 @@ class App extends Component {
     const updatedReviews = this.state.openReviews.map(review => {
       if(review.id === parseInt(id)) {
         review.reviewer = this.state.user
+        review.status = 'active'
       }
       return review  
     })
@@ -42,6 +43,37 @@ sortByLanguage = (language) => {
   }
 }
 
+finishReview = (e) => {
+  const completedReview = this.state.openReviews.map(review => {
+    if(review.id === parseInt(e.target.id)) {
+      review.status = 'complete'
+    }
+    return review
+  })
+  this.setState({ openReviews: completedReview })
+}
+
+undoReview = (e) => {
+  const undoReview = this.state.openReviews.map(review => {
+    if(review.id === parseInt(e.target.id)) {
+      review.status = 'active'
+    }
+    return review
+  })
+  this.setState({ openReviews: undoReview })
+}
+
+
+cancelReview = (e) => {
+  const cancelledReview = this.state.openReviews.map(review => {
+    if(review.id === parseInt(e.target.id)) {
+      review.status = ''
+      review.reviewer = ''
+    }
+    return review
+  })
+  this.setState({ openReviews: cancelledReview })
+}
   render() {
     return (
       <main>
@@ -55,7 +87,7 @@ sortByLanguage = (language) => {
             addReview={this.addReview}/>
           }/>
         <Route exact path='/dashboard' render={() => 
-                <CurrentReviews state={this.state}/>
+                <CurrentReviews state={this.state} finishReview={this.finishReview} undoReview={this.undoReview} cancelReview={this.cancelReview}/>
         }/>
 
       </main>

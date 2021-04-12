@@ -24,15 +24,13 @@ class App extends Component {
       .catch((error) => console.log(error))
   }
 
-  addReview = (id) => {
-    const updatedReviews = this.state.openReviews.map(review => {
-      if(review.id === parseInt(id)) {
-        review.reviewer = this.state.user
-        review.status = 'active'
-      }
-      return review  
+  addReview = (e) => {
+    fetch(`http://localhost:3001/reviews/accept/${e.target.id}/${this.state.user}`, {
+      method: 'PUT'
     })
-    this.setState({openReviews: updatedReviews})
+      .then((response) => response.json())
+      .then((reviews) => this.setState({ openReviews: reviews }))
+      .catch((error) => console.log(error))
   }
   
 sortByLanguage = (language) => {

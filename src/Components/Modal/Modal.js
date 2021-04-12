@@ -22,7 +22,7 @@ const Modal = ({addReview, id}) => {
           Thank you!
         </div>
         <div className="actions">
-          <button id={id} className='review-button' onClick = {(e) => addReview(e.target.id)}> 
+          <button id={id} className='review-button' onClick = {(e) => addReview(e)}> 
           Confirm 
           </button>
         </div>

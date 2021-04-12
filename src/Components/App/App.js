@@ -3,7 +3,6 @@ import Nav from '../Nav/Nav';
 import OpenReviews from '../OpenReviews/OpenReviews'
 import CurrentReviews from '../CurrentReviews/CurrentReviews'
 import './App.css';
-import { mockReviews } from '../../mockUserData'
 import { Route } from 'react-router-dom';
 
 
@@ -68,14 +67,21 @@ undoReview = (e) => {
 
 
 cancelReview = (e) => {
-  const cancelledReview = this.state.openReviews.map(review => {
-    if(review.id === parseInt(e.target.id)) {
-      review.status = ''
-      review.reviewer = ''
-    }
-    return review
+  fetch(`http://localhost:3001/reviews/update/${e.target.id}`, {
+    method: 'PUT'
   })
-  this.setState({ openReviews: cancelledReview })
+    .then((response) => response.json())
+    .then((reviews) => this.setState({ openReviews: reviews }))
+    .catch((error) => console.log(error))
+
+
+  // const cancelledReview = this.state.openReviews.map(review => {
+  //   if(review.id === parseInt(e.target.id)) {
+  //     review.status = ''
+  //     review.reviewer = ''
+  //   }
+  //   return review
+  // })
 }
   render() {
     return (

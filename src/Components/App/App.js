@@ -19,7 +19,10 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.setState( {openReviews: mockReviews} )
+    fetch('http://localhost:3001/reviews')
+      .then((response) => response.json())
+      .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
+      .catch((error) => console.log(error))
   }
 
   addReview = (id) => {

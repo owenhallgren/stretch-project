@@ -56,32 +56,22 @@ finishReview = (e) => {
 }
 
 undoReview = (e) => {
-  const undoReview = this.state.openReviews.map(review => {
-    if(review.id === parseInt(e.target.id)) {
-      review.status = 'active'
-    }
-    return review
-  })
-  this.setState({ openReviews: undoReview })
-}
-
-
-cancelReview = (e) => {
-  fetch(`http://localhost:3001/reviews/update/${e.target.id}`, {
+  fetch(`http://localhost:3001/reviews/undo/${e.target.id}`, {
     method: 'PUT'
   })
     .then((response) => response.json())
     .then((reviews) => this.setState({ openReviews: reviews }))
     .catch((error) => console.log(error))
+}
 
 
-  // const cancelledReview = this.state.openReviews.map(review => {
-  //   if(review.id === parseInt(e.target.id)) {
-  //     review.status = ''
-  //     review.reviewer = ''
-  //   }
-  //   return review
-  // })
+cancelReview = (e) => {
+  fetch(`http://localhost:3001/reviews/cancel/${e.target.id}`, {
+    method: 'PUT'
+  })
+    .then((response) => response.json())
+    .then((reviews) => this.setState({ openReviews: reviews }))
+    .catch((error) => console.log(error))
 }
   render() {
     return (

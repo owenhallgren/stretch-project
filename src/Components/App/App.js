@@ -46,13 +46,12 @@ sortByLanguage = (language) => {
 }
 
 finishReview = (e) => {
-  const completedReview = this.state.openReviews.map(review => {
-    if(review.id === parseInt(e.target.id)) {
-      review.status = 'complete'
-    }
-    return review
+  fetch(`http://localhost:3001/reviews/complete/${e.target.id}`, {
+    method: 'PUT'
   })
-  this.setState({ openReviews: completedReview })
+    .then((response) => response.json())
+    .then((reviews) => this.setState({ openReviews: reviews }))
+    .catch((error) => console.log(error))
 }
 
 undoReview = (e) => {

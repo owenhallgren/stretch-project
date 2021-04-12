@@ -3,7 +3,6 @@ import Nav from '../Nav/Nav';
 import OpenReviews from '../OpenReviews/OpenReviews'
 import CurrentReviews from '../CurrentReviews/CurrentReviews'
 import './App.css';
-import { mockReviews } from '../../mockUserData'
 import { Route } from 'react-router-dom';
 
 
@@ -19,18 +18,19 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.setState( {openReviews: mockReviews} )
+    fetch('http://localhost:3001/reviews')
+      .then((response) => response.json())
+      .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
+      .catch((error) => console.log(error))
   }
 
-  addReview = (id) => {
-    const updatedReviews = this.state.openReviews.map(review => {
-      if(review.id === parseInt(id)) {
-        review.reviewer = this.state.user
-        review.status = 'active'
-      }
-      return review  
+  addReview = (e) => {
+    fetch(`http://localhost:3001/reviews/accept/${e.target.id}/${this.state.user}`, {
+      method: 'PUT'
     })
-    this.setState({openReviews: updatedReviews})
+      .then((response) => response.json())
+      .then((reviews) => this.setState({ openReviews: reviews }))
+      .catch((error) => console.log(error))
   }
   
 sortByLanguage = (language) => {
@@ -44,35 +44,31 @@ sortByLanguage = (language) => {
 }
 
 finishReview = (e) => {
-  const completedReview = this.state.openReviews.map(review => {
-    if(review.id === parseInt(e.target.id)) {
-      review.status = 'complete'
-    }
-    return review
+  fetch(`http://localhost:3001/reviews/complete/${e.target.id}`, {
+    method: 'PUT'
   })
-  this.setState({ openReviews: completedReview })
+    .then((response) => response.json())
+    .then((reviews) => this.setState({ openReviews: reviews }))
+    .catch((error) => console.log(error))
 }
 
 undoReview = (e) => {
-  const undoReview = this.state.openReviews.map(review => {
-    if(review.id === parseInt(e.target.id)) {
-      review.status = 'active'
-    }
-    return review
+  fetch(`http://localhost:3001/reviews/undo/${e.target.id}`, {
+    method: 'PUT'
   })
-  this.setState({ openReviews: undoReview })
+    .then((response) => response.json())
+    .then((reviews) => this.setState({ openReviews: reviews }))
+    .catch((error) => console.log(error))
 }
 
 
 cancelReview = (e) => {
-  const cancelledReview = this.state.openReviews.map(review => {
-    if(review.id === parseInt(e.target.id)) {
-      review.status = ''
-      review.reviewer = ''
-    }
-    return review
+  fetch(`http://localhost:3001/reviews/cancel/${e.target.id}`, {
+    method: 'PUT'
   })
-  this.setState({ openReviews: cancelledReview })
+    .then((response) => response.json())
+    .then((reviews) => this.setState({ openReviews: reviews }))
+    .catch((error) => console.log(error))
 }
   render() {
     return (

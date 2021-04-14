@@ -6,3 +6,12 @@ html, body, main {
   width: 100%;
   overflow-x: hidden;
 }
+
+html {
+  background-color: #F69373;
+}
+
+* {
+  color:#333333;
+  font-family: 'Roboto', sans-serif;
+}

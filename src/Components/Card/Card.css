@@ -3,11 +3,13 @@
     flex-direction: column;
     padding: 6%;
     margin: 6%;
-    /* border: .5px solid gray; */
+    border: 5px solid rgb(167,227,217);
     width: 80%;
     height: 45vh;
     justify-content: space-between;
-    box-shadow: rgba(0, 0, 0, 0.603) 0px 1px 7px 0px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.603) 0px 1px 15px 0px;
+    border-radius: 6px;
 }
 
 .user-picture {

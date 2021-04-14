@@ -13,7 +13,7 @@ table {
 }
 
 thead tr {
-  background-color: #009879;
+  background-color: #A7E3D9;
   color: #ffffff;
   text-align: left;
 }
@@ -27,6 +27,10 @@ table tbody tr {
   border-bottom: 1px solid #dddddd;
 }
 
+table tbody tr:nth-of-type(odd) {
+  background-color: #f3f3f3;
+}
+
 table tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
 }
@@ -37,7 +41,12 @@ table tbody tr:last-of-type {
 
 table tbody tr.active-row {
   font-weight: bold;
-  color: #009879;
+  color: #A7E3D9;
+}
+
+.table-header {
+  font-size: 1.60em;
+  margin: 15% 0% 0% 0%;
 }
 
 ::-webkit-scrollbar {
@@ -47,6 +56,6 @@ table tbody tr.active-row {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #30c090;
+  background-color: #A7E3D9;
   border-radius: 5px;;
 }

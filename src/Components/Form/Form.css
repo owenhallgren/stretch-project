@@ -1,0 +1,9 @@
+form {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+select, label {
+  margin: 1%;
+}

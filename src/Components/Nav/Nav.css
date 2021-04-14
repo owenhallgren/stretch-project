@@ -6,5 +6,10 @@ nav {
 }
 
 .link{
+    align-self: center;
     text-decoration: none;
+}
+
+.icon {
+    height: 25px;
 }

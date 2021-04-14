@@ -7,7 +7,7 @@ const Form = ({sortByLanguage}) => {
       <form>
         <label htmlFor="languageFilter">Sort by: </label>
         <select onChange={(e) => sortByLanguage(e.target.value)} id="languageFilter">
-          <option value="" defaultValue></option>
+          <option value="all" defaultValue></option>
           <option value="C">C</option>
           <option value="C+">C+</option>
           <option value="C++">C++</option>
@@ -19,10 +19,10 @@ const Form = ({sortByLanguage}) => {
           <option value="PHP">PHP</option>
           <option value="Other">Other</option>
         </select>
-        <select>
+        {/* <select>
           <option></option>
           <option></option>
-        </select>
+        </select> */}
       </form>
     )
   }

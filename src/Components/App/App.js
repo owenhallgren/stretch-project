@@ -35,7 +35,6 @@ class App extends Component {
   
 sortByLanguage = (language) => {
   const filteredReviews = this.state.openReviews.filter(review => review.language === language && !review.reviewer)
-
   if(filteredReviews.length){
     this.setState({ filteredReviews: filteredReviews, noFilteredReviews: false })
   } else {

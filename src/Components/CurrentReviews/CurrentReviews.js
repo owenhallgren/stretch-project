@@ -32,6 +32,7 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
     return (
       <>
       <div className='table-container'>
+        <h1 className='table-header'>Active Reviews</h1>
         <table>
         <thead>
             <tr>
@@ -49,6 +50,7 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
       </table>
       </div>
       <div className='table-container'>
+      <h1 className='table-header'>Completed Reviews</h1>
         <table>
         <thead>
             <tr>

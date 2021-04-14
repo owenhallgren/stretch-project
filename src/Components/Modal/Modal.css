@@ -5,7 +5,10 @@
 .accept-button {
   border-radius: 5px;
   height: 75%;
+  border: 1px solid #1F4534;
   cursor: pointer;
+  background-color: #A7E3D9;
+  outline: none;
 }
 
 .accept-button:hover {
@@ -39,17 +42,19 @@
   padding: 2px 5px;
   line-height: 20px;
   right: -10px;
-  top: -10px;
+  top: -8px;
   font-size: 24px;
   background: #ffffff;
   border-radius: 18px;
   border: 1px solid #cfcece;
+  outline:none;
+  text-align: center;
 }
 
 .popup-overlay {
   background-color: rgba(117, 120, 123, 0.7);
   position: fixed;
-  inset: 0px;
+  /* inset: 0px; */
   display: flex;
   z-index: 999;
   pointer-events: auto;
@@ -62,5 +67,15 @@
   background: #fff;
   width: 75%;
   padding: 5px;
-  border: 1px solid #d7d7d7;
+  border: 5px solid #A7E3D9;
+  border-radius: 5px;
+}
+
+.review-button {
+  height: 3em;
+  width: 7em;
+  border-radius: 6px;
+  border: 1px solid #1F4534;
+  cursor: pointer;
+  background-color: #A7E3D9;
 }

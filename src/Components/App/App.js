@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3001/reviews')
+    fetch('http://localhost:3002/api/v1/reviews')
       .then((response) => response.json())
       .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
       .catch((error) => console.log(error))
@@ -63,7 +63,7 @@ undoReview = (e) => {
 
 
 cancelReview = (e) => {
-  fetch(`http://localhost:3001/reviews/cancel/${e.target.id}`, {
+  fetch(`http://localhost:3002/api/v1/reviews/cancel/${e.target.id}`, {
     method: 'PUT'
   })
     .then((response) => response.json())

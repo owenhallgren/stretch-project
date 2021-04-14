@@ -18,15 +18,15 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3002/api/v1/reviews')
+    fetch('http://localhost:3003/api/v1/reviews')
       .then((response) => response.json())
       .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
       .catch((error) => console.log(error))
   }
 
   addReview = (e) => {
-    fetch(`http://localhost:3001/reviews/accept/${e.target.id}/${this.state.user}`, {
-      method: 'PUT'
+    fetch(`http://localhost:3003/api/v1/reviews/accept/${e.target.id}/${this.state.user}`, {
+      method: 'PUT',
     })
       .then((response) => response.json())
       .then((reviews) => this.setState({ openReviews: reviews }))
@@ -44,7 +44,7 @@ sortByLanguage = (language) => {
 }
 
 finishReview = (e) => {
-  fetch(`http://localhost:3001/reviews/complete/${e.target.id}`, {
+  fetch(`http://localhost:3003/api/v1/reviews/complete/${e.target.id}`, {
     method: 'PUT'
   })
     .then((response) => response.json())
@@ -53,7 +53,7 @@ finishReview = (e) => {
 }
 
 undoReview = (e) => {
-  fetch(`http://localhost:3001/reviews/undo/${e.target.id}`, {
+  fetch(`http://localhost:3003/api/v1/reviews/undo/${e.target.id}`, {
     method: 'PUT'
   })
     .then((response) => response.json())
@@ -63,7 +63,7 @@ undoReview = (e) => {
 
 
 cancelReview = (e) => {
-  fetch(`http://localhost:3002/api/v1/reviews/cancel/${e.target.id}`, {
+  fetch(`http://localhost:3003/api/v1/reviews/cancel/${e.target.id}`, {
     method: 'PUT'
   })
     .then((response) => response.json())

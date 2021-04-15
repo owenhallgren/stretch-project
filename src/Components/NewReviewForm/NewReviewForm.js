@@ -4,14 +4,24 @@ class NewReviewForm extends Component {
   constructor() {
     super()
 
-this.state = {
-  summary: '',
-  language: '',
-  repo: ''
-  //users email and GH will be passed down. date added dynamically
-}
+    this.state = {
+      summary: '',
+      language: '',
+      repo: ''
+      //users email and GH will be passed down. date added dynamically
+    }
 
   }
+
+  clearInputs = () => {
+    this.setState({ summary: '', language: '', repo: '' })
+  }
+
+  handleChange = (data, dataCategory) => {
+    this.setState({ [dataCategory]: data })
+  }
+
+
 
 
   render () {
@@ -19,7 +29,7 @@ this.state = {
     return(
       <>
       <form>
-        <select>
+        <select onChange={(event) => this.handleChange(event.target.value, 'language')}>
           <option value="" defaultValue></option>
           <option value="C">C</option>
           <option value="C+">C+</option>
@@ -32,15 +42,14 @@ this.state = {
           <option value="PHP">PHP</option>
           <option value="Other">Other</option>
         </select>
-        <input></input>
-        <input></input>
+        <input type="text" placeholder="Repository URL" onChange={(event) => this.handleChange(event.target.value, 'repo')}></input>
+        <input type="text" placeholder="Summary of Request" onChange={(event) => this.handleChange(event.target.value, 'summary')}></input>
 
 
       </form>
-
-
       </>
     )
   }
 }
 
+export default NewReviewForm;

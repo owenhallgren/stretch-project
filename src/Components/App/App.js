@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Nav from '../Nav/Nav';
 import OpenReviews from '../OpenReviews/OpenReviews'
 import CurrentReviews from '../CurrentReviews/CurrentReviews'
+import NewReviewForm from '../NewReviewForm/NewReviewForm'
 import './App.css';
 import { Route } from 'react-router-dom';
 
@@ -87,7 +88,9 @@ cancelReview = (e) => {
         <Route exact path='/dashboard' render={() => 
                 <CurrentReviews state={this.state} finishReview={this.finishReview} undoReview={this.undoReview} cancelReview={this.cancelReview}/>
         }/>
-
+        <Route exact path='/new' render={() => 
+                <NewReviewForm />
+        }/>
       </main>
     )
   }

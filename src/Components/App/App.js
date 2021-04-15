@@ -16,40 +16,44 @@ class App extends Component {
       user: 'Jackson',
       noFilteredReviews: false,
       email: 'jacksonmichael@gmail.com',
-      username: 'jacksonmcguire'
+      username: 'jacksonmcguire',
+      filterValue: ''
     }
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3001/reviews')
+    fetch('http://localhost:3003/api/v1/reviews')
       .then((response) => response.json())
       .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
       .catch((error) => console.log(error))
   }
 
   addReview = (e) => {
-    fetch(`http://localhost:3001/reviews/accept/${e.target.id}/${this.state.user}`, {
+    fetch(`http://localhost:3003/api/v1/reviews/accept/${e.target.id}/${this.state.user}`, {
       method: 'PUT',
     })
       .then((response) => response.json())
-      .then((reviews) => this.setState({ openReviews: reviews }))
+      .then((reviews) => this.setState({ openReviews: reviews, filteredReviews: [], filterValue: ''}))
       .catch((error) => console.log(error))
   }
   
+
 sortByLanguage = (language) => {
-  const filteredReviews = this.state.openReviews.filter(review => review.language === language && !review.reviewer)
+  const fReviews = this.state.openReviews.filter(review => review.language === language && !review.reviewer)
   console.log(language)
   if(!language) {
-    this.setState({ filteredReviews: []})
-  } else if(filteredReviews.length){
-    this.setState({ filteredReviews: filteredReviews, noFilteredReviews: false })
+    this.setState({ filteredReviews: [], noFilteredReviews: false, filterValue: language})//fix applied here
+  } else if(fReviews.length){
+    this.setState({ filteredReviews: fReviews, noFilteredReviews: false, filterValue: language})
   } else if(language !== ''){
-    this.setState({ noFilteredReviews: true })
+    this.setState({ noFilteredReviews: true, filterValue: language })
+  } else {
+    console.log("and that's a miss")//remove once done testing
   }
 }
 
 finishReview = (e) => {
-  fetch(`http://localhost:3001/reviews/complete/${e.target.id}`, {
+  fetch(`http://localhost:3003/api/v1/reviews/complete/${e.target.id}`, {
     method: 'PUT'
   })
     .then((response) => response.json())
@@ -58,7 +62,7 @@ finishReview = (e) => {
 }
 
 undoReview = (e) => {
-  fetch(`http://localhost:3001/reviews/undo/${e.target.id}`, {
+  fetch(`http://localhost:3003/api/v1/reviews/undo/${e.target.id}`, {
     method: 'PUT'
   })
     .then((response) => response.json())
@@ -68,7 +72,7 @@ undoReview = (e) => {
 
 
 cancelReview = (e) => {
-  fetch(`http://localhost:3001/reviews/cancel/${e.target.id}`, {
+  fetch(`http://localhost:3003/api/v1/reviews/cancel/${e.target.id}`, {
     method: 'PUT'
   })
     .then((response) => response.json())
@@ -83,22 +87,27 @@ submitNewReview = (partialRequest) => {
   //add fetch request here and reassign fetch resonse to open reviews below (and get rid of id above)
   console.log([newRequest, ...this.state.openReviews])
   this.setState({ openReviews: [newRequest, ...this.state.openReviews]})
+}
 
+resetFilteredReviews = () => {
+  this.setState({ filteredReviews: []})
 }
 
 
   render() {
     return (
       <main>
-        <Nav />
+        <Nav resetFilteredReviews={this.resetFilteredReviews}/>
         <Route exact path='/' render={() => 
           <OpenReviews
             noFilteredReviews={this.state.noFilteredReviews}
             sortByLanguage={this.sortByLanguage} 
             openReviews={this.state.openReviews} 
             filteredReviews={this.state.filteredReviews}
-            addReview={this.addReview}/>
-          }/>
+            addReview={this.addReview}
+            filterValue={this.state.filterValue}
+          />
+        }/>
         <Route exact path='/dashboard' render={() => 
                 <CurrentReviews state={this.state} finishReview={this.finishReview} undoReview={this.undoReview} cancelReview={this.cancelReview}/>
         }/>

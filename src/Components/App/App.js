@@ -75,6 +75,18 @@ cancelReview = (e) => {
     .then((reviews) => this.setState({ openReviews: reviews }))
     .catch((error) => console.log(error))
 }
+
+
+submitNewReview = (partialRequest) => {
+  const newRequest= {...partialRequest, username: this.state.username, email: this.state.email, 
+    status: '', reviewer: '', id: Date.now()}
+  //add fetch request here and reassign fetch resonse to open reviews below (and get rid of id above)
+  console.log([newRequest, ...this.state.openReviews])
+  this.setState({ openReviews: [newRequest, ...this.state.openReviews]})
+
+}
+
+
   render() {
     return (
       <main>
@@ -91,7 +103,7 @@ cancelReview = (e) => {
                 <CurrentReviews state={this.state} finishReview={this.finishReview} undoReview={this.undoReview} cancelReview={this.cancelReview}/>
         }/>
         <Route exact path='/new' render={() => 
-                <NewReviewForm />
+                <NewReviewForm submitNewReview={this.submitNewReview}/>
         }/>
       </main>
     )

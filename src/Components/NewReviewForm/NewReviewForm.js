@@ -21,11 +21,22 @@ class NewReviewForm extends Component {
     this.setState({ [dataCategory]: data })
   }
 
-  submitReview = () => {
-    const newReview = {...this.state, date: this.getDate(), }
+  submitReview = (event) => {
+    event.preventDefault(event)
+    if(!this.state.summary || !this.state.language || !this.state.repo) {
+      return alert('too much sauce')//exits submission as a field is blank
+      // ^^update this with DOM alert to user to fill in field
+    }
+
+    const newReview = {...this.state, date: this.getDate()}
+    this.props.submitNewReview(newReview)
     //send in method passed in from App
     this.clearInputs()
   }
+
+//pass in missing data from app
+//pass down method from app
+
 
   getDate = () => {
     var today = new Date();
@@ -36,7 +47,6 @@ class NewReviewForm extends Component {
     if(dd < 10) {
         dd='0'+dd;
     } 
-
     if(mm < 10) {
         mm='0'+mm;
     } 
@@ -49,7 +59,7 @@ class NewReviewForm extends Component {
     return(
       <>
       <form className="new-review">
-        <select onChange={(event) => this.handleChange(event.target.value, 'language')}>
+        <select value={this.state.language} onChange={(event) => this.handleChange(event.target.value, 'language')}>
           <option value="" defaultValue></option>
           <option value="C">C</option>
           <option value="C+">C+</option>
@@ -62,9 +72,9 @@ class NewReviewForm extends Component {
           <option value="PHP">PHP</option>
           <option value="Other">Other</option>
         </select>
-        <input type="text" placeholder="Repository URL" onChange={(event) => this.handleChange(event.target.value, 'repo')}></input>
-        <input type="text" placeholder="Summary of Request" onChange={(event) => this.handleChange(event.target.value, 'summary')}></input>
-        <button onClick={() => this.submitReview()}>Submit</button>
+        <input value={this.state.repo} type="text" placeholder="Repository URL" onChange={(event) => this.handleChange(event.target.value, 'repo')}></input>
+        <input value={this.state.summary} type="text" placeholder="Summary of Request" onChange={(event) => this.handleChange(event.target.value, 'summary')}></input>
+        <button onClick={(event) => this.submitReview(event)}>Submit</button>
 
       </form>
       </>

@@ -76,7 +76,7 @@ class NewReviewForm extends Component {
             <option value="Other">Other</option>
           </select>
           <input value={this.state.repo} type="text" placeholder="Repository URL" onChange={(event) => this.handleChange(event.target.value, 'repo')}></input>
-          <input className="summary-input" value={this.state.summary} type="text" placeholder="Summary of Request" onChange={(event) => this.handleChange(event.target.value, 'summary')}></input>
+          <textarea className="summary-input" value={this.state.summary} type="text" placeholder="Summary of Request" onChange={(event) => this.handleChange(event.target.value, 'summary')}></textarea>
           <button onClick={(event) => this.submitReview(event)}>Submit</button>
         </form>
         {this.state.displayMessage && <p>{this.state.displayMessage}</p>}

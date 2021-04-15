@@ -54,7 +54,6 @@
 .popup-overlay {
   background-color: rgba(117, 120, 123, 0.7);
   position: fixed;
-  /* inset: 0px; */
   display: flex;
   z-index: 999;
   pointer-events: auto;
@@ -78,4 +77,24 @@
   border: 1px solid #1F4534;
   cursor: pointer;
   background-color: #A7E3D9;
+}
+
+
+
+@media only screen and (min-width: 700px) {
+  .popup-content {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  .popup-content {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .popup-content {
+    width: 40%;
+  }
 }

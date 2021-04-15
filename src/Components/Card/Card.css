@@ -22,3 +22,30 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+
+@media only screen and (min-width: 768px) {
+    .card {    
+        margin: 3%;
+        width: 30%;
+        height: 40vh;
+    }
+  }
+
+  @media only screen and (min-width: 950px) {
+    .card {    
+        margin: 3%;
+        padding:2%;
+        width: 22%;
+        height: 40vh;
+    }
+  }
+
+  @media only screen and (min-width: 1500px) {
+    .card {    
+        margin: 1%;
+        padding:2%;
+        width: 18%;
+        height: 45vh;
+    }
+  }

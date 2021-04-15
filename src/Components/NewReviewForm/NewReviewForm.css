@@ -1,0 +1,23 @@
+.new-review-page {
+  margin: 0 3%;
+}
+
+
+.new-review-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50vh;
+}
+
+.new-review-form > select, input{
+  margin: 0;
+  height: 10%;
+}
+
+.summary-input {
+  height: 40%;
+  /* padding-bottom: auto; */
+  text-align: left;
+}
+

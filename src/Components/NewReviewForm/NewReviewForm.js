@@ -21,14 +21,34 @@ class NewReviewForm extends Component {
     this.setState({ [dataCategory]: data })
   }
 
+  submitReview = () => {
+    const newReview = {...this.state, date: this.getDate(), }
+    //send in method passed in from App
+    this.clearInputs()
+  }
 
+  getDate = () => {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; 
+    var yyyy = today.getFullYear();
 
+    if(dd < 10) {
+        dd='0'+dd;
+    } 
+
+    if(mm < 10) {
+        mm='0'+mm;
+    } 
+
+    return mm+'/'+dd+'/'+yyyy;
+  }
 
   render () {
 
     return(
       <>
-      <form>
+      <form className="new-review">
         <select onChange={(event) => this.handleChange(event.target.value, 'language')}>
           <option value="" defaultValue></option>
           <option value="C">C</option>
@@ -44,7 +64,7 @@ class NewReviewForm extends Component {
         </select>
         <input type="text" placeholder="Repository URL" onChange={(event) => this.handleChange(event.target.value, 'repo')}></input>
         <input type="text" placeholder="Summary of Request" onChange={(event) => this.handleChange(event.target.value, 'summary')}></input>
-
+        <button onClick={() => this.submitReview()}>Submit</button>
 
       </form>
       </>

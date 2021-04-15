@@ -14,7 +14,9 @@ class App extends Component {
       openReviews: [],
       filteredReviews: [],
       user: 'Jackson',
-      noFilteredReviews: false
+      noFilteredReviews: false,
+      email: 'jacksonmichael@gmail.com',
+      username: 'jacksonmcguire'
     }
   }
 

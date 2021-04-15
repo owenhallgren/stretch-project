@@ -36,9 +36,6 @@ const Nav = () => {
                 <Link to={'/dashboard'} className="link">
                     <button><img src={toDo} className='icon'></img></button>
                 </Link>
-
-
-
               </>
             }/>
 

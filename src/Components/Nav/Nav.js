@@ -39,7 +39,7 @@ const Nav = ({resetFilteredReviews}) => {
             <Route exact path='/new' render={() => 
               <>
                 <Link to={'/'} className="link">
-                    <button onClick={() => resetFilteredReviews()}>Home</button>
+                  <button className='logo-button' onClick={() => resetFilteredReviews()}><img src={home} alt='home'></img></button>
                 </Link>
                 <Link to={'/dashboard'} className="link">
                     <button><img src={toDo} className='icon' alt='dashboard'></img></button>

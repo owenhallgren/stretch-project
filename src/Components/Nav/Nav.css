@@ -36,11 +36,11 @@ nav {
     transition: transform ease 10s;
 }
 .pear-logo:active {
-    -moz-transform: rotate(36000deg);
-    -webkit-transform: rotate(36000deg);
-    -o-transform: rotate(36000deg);
-    -ms-transform: rotate(36000deg);
-    transform: rotate(36000deg);
+    -moz-transform: rotate(3600deg);
+    -webkit-transform: rotate(3600deg);
+    -o-transform: rotate(3600deg);
+    -ms-transform: rotate(3600deg);
+    transform: rotate(3600deg);
 }
 
 .nav-buttons {
@@ -57,3 +57,17 @@ nav {
 .logo-button >img {
     height: 30px;
 }
+
+
+
+@media only screen and (max-width: 334px) {
+    .nav-buttons {    
+     width: 34%;
+    }
+  }
+
+  @media only screen and (min-width: 1000px) {
+    .nav-buttons {    
+     width: 20%;
+    }
+  }

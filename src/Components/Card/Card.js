@@ -7,8 +7,13 @@ import Modal from '../Modal/Modal'
 
 
 const Card = ( {username, summary, language, date, id, addReview} ) => {
-
-  const path = `./assets/${language}.png`
+  let path;
+  
+  if(language === 'C#') {
+    path = `./assets/Csharp.png`
+  } else {
+    path = `./assets/${language}.png`
+  }
 
   return (
         <article className='card'>

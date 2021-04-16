@@ -16,7 +16,7 @@ nav {
 
 .app-logo{
     display: flex;
-    width: 30%;
+    width: 55%;
 }
 
 .app-logo > h1 {
@@ -27,6 +27,8 @@ nav {
 
 
 .pear-logo {
+    height: 80%;
+    align-self: center;
     -moz-transition: -moz-transform ease 10s;
     -webkit-transition: -webkit-transform ease 10s;
     -o-transition: -o-transform ease 10;
@@ -39,4 +41,10 @@ nav {
     -o-transform: rotate(36000deg);
     -ms-transform: rotate(36000deg);
     transform: rotate(36000deg);
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
 }

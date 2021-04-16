@@ -11,6 +11,7 @@ const Nav = ({resetFilteredReviews}) => {
               <img src={pear} alt='pear-logo' className='pear-logo'></img>
               <h1>Pear</h1>
             </div>
+            <div className='nav-buttons'>
             <Route exact path='/dashboard' render={() => 
               <>
                 <Link to={'/'} className="link">
@@ -32,7 +33,7 @@ const Nav = ({resetFilteredReviews}) => {
                 </Link>
               </>
             }/>
-
+  
             <Route exact path='/new' render={() => 
               <>
                 <Link to={'/'} className="link">
@@ -43,7 +44,7 @@ const Nav = ({resetFilteredReviews}) => {
                 </Link>
               </>
             }/>
-
+            </div>
             {/* <button>FAQ?</button> */}
         </nav>
     )

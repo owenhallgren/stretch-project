@@ -27,20 +27,16 @@ nav {
 
 
 .pear-logo {
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    color: white;
-    -moz-transition: -moz-transform ease 0.6s;
-    -webkit-transition: -webkit-transform ease 0.6s;
-    -o-transition: -o-transform ease 0.6s;
-    -ms-transition: -ms-transform ease 0.6s;
-    transition: transform ease 0.6s;
+    -moz-transition: -moz-transform ease 10s;
+    -webkit-transition: -webkit-transform ease 10s;
+    -o-transition: -o-transform ease 10;
+    -ms-transition: -ms-transform ease 10s;
+    transition: transform ease 10s;
 }
-.pear-logo:hover {
-    -moz-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    transform: rotate(360deg);
+.pear-logo:active {
+    -moz-transform: rotate(36000deg);
+    -webkit-transform: rotate(36000deg);
+    -o-transform: rotate(36000deg);
+    -ms-transform: rotate(36000deg);
+    transform: rotate(36000deg);
 }

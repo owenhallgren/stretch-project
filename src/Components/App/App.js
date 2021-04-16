@@ -82,10 +82,29 @@ cancelReview = (e) => {
 
 
 submitNewReview = (partialRequest) => {
-  const newRequest= {...partialRequest, username: this.state.username, email: this.state.email, 
-    status: '', reviewer: '', id: Date.now()}
-  //add fetch request here and reassign fetch resonse to open reviews below (and get rid of id above)
-  console.log([newRequest, ...this.state.openReviews])
+  const newRequest = {...partialRequest, username: this.state.username, email: this.state.email, 
+    status: '', reviewer: ''}
+    console.log(newRequest)
+    fetch(`http://localhost:3003/api/v1/reviews`, {
+    method: 'POST',headers: {
+        "Content-Type": "application/json"
+      },
+    body: JSON.stringify({
+      date: newRequest.date,
+      email: newRequest.email,
+      language: newRequest.language, 
+      repo: newRequest.repo,
+      reviewer: newRequest.reviewer,
+      status: newRequest.status,
+      summary: newRequest.summary, 
+      username: newRequest.username
+    })
+  })
+    .then((response) => response.json())
+    .then((review) => this.setState({ openReviews:[review, ...this.state.openReviews] }))
+    .catch((error) => console.log(error))
+
+  
   this.setState({ openReviews: [newRequest, ...this.state.openReviews]})
 }
 

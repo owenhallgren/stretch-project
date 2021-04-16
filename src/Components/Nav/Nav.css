@@ -46,5 +46,14 @@ nav {
 .nav-buttons {
     display: flex;
     justify-content: space-between;
-    width: 35%;
+    width: 27%;
+}
+
+.logo-button{
+    background-color: transparent;
+    border: none;
+}
+
+.logo-button >img {
+    height: 30px;
 }

@@ -24,4 +24,23 @@ describe('Page load', () => {
     cy.get('H1')
     .contains('Completed Reviews')
   })
+
+  it('As a user, when I navigate to different areas of the application, the URL should update accordingly.', () => {
+    cy.visit('http://localhost:3000/new')
+    cy.get('H2')
+    .contains('Submit a new request')
+    cy.visit('http://localhost:3000/dashboard')
+    cy.get('H1')
+    .contains('Active Reviews')
+    cy.visit('http://localhost:3000/')
+    cy.get('H1')
+    .contains('Open Review Requests')
+  })
+
+  it('As a user, when I select a filter value, I will only be shown requests relevant to that filter', () => {
+    cy.get('#languageFilter').select('Java')
+    cy.get('.card-container')
+    .children()
+    .should('have.length', 1)
+  })
 })

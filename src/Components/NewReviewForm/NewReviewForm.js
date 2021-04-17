@@ -60,7 +60,7 @@ class NewReviewForm extends Component {
 
     return(
       <section className="new-review-page">
-        <h2>Submit a new request</h2>
+        <h2 className="submit-heading">Submit a new request</h2>
         <form className="new-review-form">
           <select value={this.state.language} onChange={(event) => this.handleChange(event.target.value, 'language')}>
             <option value="" defaultValue>Choose a language</option>

@@ -36,8 +36,8 @@ tbody > p {
 }
 
 .table-header {
-  font-size: 1.60em;
-  margin: 15% 0% 0% 3%;
+  font-size: 1.5em;
+  margin: 15% 0% 0% 1%;
 }
 
 .empty-review-table {
@@ -54,4 +54,10 @@ tbody > p {
 ::-webkit-scrollbar-thumb {
   background-color: #A7E3D9;
   border-radius: 5px;;
+}
+
+@media only screen and (min-width: 700px) {
+  .table-header {
+    margin: 8% 0% 0% 1.5%;
+  }
 }

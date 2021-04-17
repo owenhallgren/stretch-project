@@ -29,8 +29,43 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
     )
   })
 
+  //below is new
+  const myReviews = state.openReviews.filter(review => review.username === state.username && review.status === '')
+  const completedRequestTable = myReviews.map(review => {
+    return(
+      <tr key={review.id}>
+          <td>{review.date}</td>
+          <td>{review.username}</td>
+          <td><a href={review.repo} target='_blank' rel="noreferrer">{review.repo}</a></td>
+          <td>{review.status || 'pending'}</td>
+      </tr>
+    )
+  })
+
+
+
     return (
       <>
+      <div className='table-container'>
+        <h1 className='table-header'>My Requests</h1>
+        <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Repo</th>
+                <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+           {completedRequestTable} 
+        </tbody>
+      </table>
+      </div>
+
+
+
+
       <div className='table-container'>
         <h1 className='table-header'>Active Reviews</h1>
         <table>

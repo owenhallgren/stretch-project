@@ -1,5 +1,5 @@
 
-describe('Page load', () => {
+describe('Initial Page', () => {
   beforeEach(() => {
     cy.fixture('mockReviews.json')
     .then(reviewData => {
@@ -43,4 +43,28 @@ describe('Page load', () => {
     .children()
     .should('have.length', 1)
   })
+})
+
+
+describe.only('Adding New Reviews', () => {
+  before(() => {
+      cy.fixture('mockReviews.json')
+      .then(reviewData => {
+          cy.intercept('GET', 'http://localhost:3003/api/v1/reviews', reviewData)
+      })
+      cy.fixture('updatedReviews.json')
+      .then(updatedReviewData => {
+          cy.intercept('PUT', 'http://localhost:3003/api/v1/reviews/accept/69/Jackson', updatedReviewData)
+      })
+    
+      cy.visit('http://localhost:3000/') 
+  })
+
+  it('As a user, when I volunteer for a review, I will be presented with the requestor\'s contact info', () => {
+    cy.get('.accept-button').first().click()
+    cy.get('.review-button').click()   
+    cy.get('#dashBoard').click()
+    cy.get('td').contains('jacksonmcguire')
+  })
+
 })

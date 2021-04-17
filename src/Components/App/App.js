@@ -105,6 +105,15 @@ submitNewReview = (partialRequest) => {
     .catch((error) => console.log(error))
 }
 
+deleteReview = (e) => {
+console.log('delete me', e.target.id)
+
+
+
+}
+
+
+
 resetFilteredReviews = () => {
   this.setState({ filteredReviews: []})
 }
@@ -125,10 +134,16 @@ resetFilteredReviews = () => {
           />
         }/>
         <Route exact path='/dashboard' render={() => 
-                <CurrentReviews state={this.state} finishReview={this.finishReview} undoReview={this.undoReview} cancelReview={this.cancelReview}/>
+          <CurrentReviews 
+          state={this.state} 
+          finishReview={this.finishReview} 
+          undoReview={this.undoReview} 
+          cancelReview={this.cancelReview}
+          deleteReview={this.deleteReview}
+          />
         }/>
         <Route exact path='/new' render={() => 
-                <NewReviewForm submitNewReview={this.submitNewReview}/>
+          <NewReviewForm submitNewReview={this.submitNewReview}/>
         }/>
       </main>
     )

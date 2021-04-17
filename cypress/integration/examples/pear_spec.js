@@ -53,30 +53,13 @@ describe.only('Adding New Reviews', () => {
           cy.intercept('GET', 'http://localhost:3003/api/v1/reviews', reviewData)
       })
 
-      cy.intercept({
-        method: 'PUT',
-        url: 'http://localhost:3003/api/v1/reviews/complete/69420247'
-      },
-        {
-          statusCode: 201,
-          body:
-          [{"username":"JeffShepherd","summary":"this is a summary","email":"nazosnowboarder@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"active","reviewer":"Jackson","id":420},
-          {"username":"jacksonmcguire","summary":"this is a summary","email":"lumbersexual@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":69},
-          {"username":"josharagon","summary":"this is a summary","email":"sucksquishbangblow@gmail.com","language":"C++","date":"02/24/21","repo":"https://github.com/josharagon/self-care-center","status":"complete","reviewer":"Jackson","id":42069},
-          {"username":"owenhallgren","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"C#","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"","reviewer":"","id":69420},
-          {"username":"rdtho2525","summary":"this is a summary","email":"reggietheveggie@msn.com","language":"Ruby","date":"02/01/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"complete","reviewer":"Jackson","id":6969},
-          {"username":"aemiers","summary":"this is a summary","email":"ispeakgerman@gmail.com","language":"Java","date":"06/15/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"","reviewer":"","id":420420},
-          {"username":"ConnorAndersonLarson","summary":"this is a summary","email":"igivehousetours@gmail.com","language":"PHP","date":"09/18/21","repo":"https://github.com/josharagon/self-care-center","status":"","reviewer":"","id":123},
-          {"username":"Shakikka","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"complete","reviewer":"Jackson","id":69420247}
-        ]
-        });
 
       cy.intercept({
         method: 'PUT',
         url: 'http://localhost:3003/api/v1/reviews/accept/69/Jackson'
       },
         {
-          statusCode: 201,
+          statusCode: 200,
           body:
           [{"username":"JeffShepherd","summary":"this is a summary","email":"nazosnowboarder@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"active","reviewer":"Jackson","id":420},
           {"username":"jacksonmcguire","summary":"this is a summary","email":"lumbersexual@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":69},
@@ -88,6 +71,7 @@ describe.only('Adding New Reviews', () => {
           {"username":"Shakikka","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"active","reviewer":"Jackson","id":69420247}
         ]
         });
+
     
       cy.visit('http://localhost:3000/') 
   })
@@ -99,11 +83,51 @@ describe.only('Adding New Reviews', () => {
     cy.get('td').contains('jacksonmcguire')
   })
 
-  it.only('As a user, when I click complete on an open review, the review will appear in my completed table view', () => { 
-    cy.get('#dashBoard').click()
+  it('As a user, when I click complete on an open review, the review will appear in my completed table view', () => { 
+    cy.intercept({
+      method: 'PUT',
+      url: 'http://localhost:3003/api/v1/reviews/complete/69420247'
+    },
+      {
+        statusCode: 200,
+        body:
+        [{"username":"JeffShepherd","summary":"this is a summary","email":"nazosnowboarder@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"active","reviewer":"Jackson","id":420},
+        {"username":"jacksonmcguire","summary":"this is a summary","email":"lumbersexual@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":69},
+        {"username":"josharagon","summary":"this is a summary","email":"sucksquishbangblow@gmail.com","language":"C++","date":"02/24/21","repo":"https://github.com/josharagon/self-care-center","status":"complete","reviewer":"Jackson","id":42069},
+        {"username":"owenhallgren","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"C#","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"","reviewer":"","id":69420},
+        {"username":"rdtho2525","summary":"this is a summary","email":"reggietheveggie@msn.com","language":"Ruby","date":"02/01/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"complete","reviewer":"Jackson","id":6969},
+        {"username":"aemiers","summary":"this is a summary","email":"ispeakgerman@gmail.com","language":"Java","date":"06/15/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"","reviewer":"","id":420420},
+        {"username":"ConnorAndersonLarson","summary":"this is a summary","email":"igivehousetours@gmail.com","language":"PHP","date":"09/18/21","repo":"https://github.com/josharagon/self-care-center","status":"","reviewer":"","id":123},
+        {"username":"Shakikka","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"complete","reviewer":"Jackson","id":69420247}
+      ]
+      });
     cy.get('#69420247').click()
+    cy.get('#active').find('tr').its('length').should('eq', 3)
     cy.get('#completed').find('tr').its('length').should('eq', 4)
     
+  })
+
+  it('As a user, when I click undo on a completed review, the review will be moved back to my open reviews', () => { 
+    cy.intercept({
+      method: 'PUT',
+      url: 'http://localhost:3003/api/v1/reviews/undo/69420247'
+    },
+      {
+        statusCode: 201,
+        body:
+        [{"username":"JeffShepherd","summary":"this is a summary","email":"nazosnowboarder@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"active","reviewer":"Jackson","id":420},
+        {"username":"jacksonmcguire","summary":"this is a summary","email":"lumbersexual@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":69},
+        {"username":"josharagon","summary":"this is a summary","email":"sucksquishbangblow@gmail.com","language":"C++","date":"02/24/21","repo":"https://github.com/josharagon/self-care-center","status":"complete","reviewer":"Jackson","id":42069},
+        {"username":"owenhallgren","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"C#","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"","reviewer":"","id":69420},
+        {"username":"rdtho2525","summary":"this is a summary","email":"reggietheveggie@msn.com","language":"Ruby","date":"02/01/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"complete","reviewer":"Jackson","id":6969},
+        {"username":"aemiers","summary":"this is a summary","email":"ispeakgerman@gmail.com","language":"Java","date":"06/15/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"","reviewer":"","id":420420},
+        {"username":"ConnorAndersonLarson","summary":"this is a summary","email":"igivehousetours@gmail.com","language":"PHP","date":"09/18/21","repo":"https://github.com/josharagon/self-care-center","status":"","reviewer":"","id":123},
+        {"username":"Shakikka","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"active","reviewer":"Jackson","id":69420247}
+      ]
+      });
+    cy.get('#69420247').click()
+    cy.get('#active').find('tr').its('length').should('eq', 4)
+    cy.get('#completed').find('tr').its('length').should('eq', 3)  
   })
 
 })

@@ -2,11 +2,12 @@ nav {
     background-color:#333333;
     height: 8vh;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 nav > h2 {
   color: white;
+  margin: auto;
 }
 
 .link{
@@ -20,7 +21,7 @@ nav > h2 {
 
 .app-logo{
     display: flex;
-    width: 55%;
+    width: 30%;
 }
 
 .app-logo > h1 {

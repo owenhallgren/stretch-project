@@ -61,7 +61,8 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
         </tr>
         </thead>
         <tbody>
-           {completedRequestTable && <tr className="empty-review-table"><td>no reviews available</td></tr>} 
+           {!completedRequestTable.length && <tr className="empty-review-table"><td>no reviews available</td></tr>} 
+           {completedRequestTable}
         </tbody>
       </table>
       </div>
@@ -83,7 +84,8 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
         </tr>
         </thead>
         <tbody>
-           {reviewTable && <tr className="empty-review-table"><td>no reviews available</td></tr>}
+           {!reviewTable.length && <tr className="empty-review-table"><td>no reviews available</td></tr>}
+           {reviewTable}
         </tbody>
       </table>
       </div>
@@ -100,7 +102,8 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
         </tr>
         </thead>
         <tbody>
-           {completedReviewTable && <tr className="empty-review-table"><td>no reviews available</td></tr>}
+          {!completedReviewTable.length && <tr className="empty-review-table"><td>no reviews available</td></tr>}
+          {completedReviewTable}
         </tbody>
       </table>
       </div>

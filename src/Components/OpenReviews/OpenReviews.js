@@ -23,8 +23,10 @@ const OpenReviews = ( {filterValue, openReviews, addReview, filteredReviews, sor
     return (
 
         <div>
+          <div className="header-container">
             <h1 className='open-review-header'>Open Review Requests</h1>
             <Form filterValue={filterValue} sortByLanguage={sortByLanguage} />
+          </div>
               {noFilteredReviews && <p>no reviews</p>}
             <section className='card-container'>
                 {!noFilteredReviews && allReviews}

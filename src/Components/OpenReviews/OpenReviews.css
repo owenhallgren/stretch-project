@@ -1,7 +1,8 @@
-.open-review-header{
+.open-review-header {
     text-align: center;
 }
 
+.sort-form
 .filters {
     display: flex;
     justify-content: space-evenly;
@@ -18,6 +19,12 @@
   justify-content: space-between;
 }
 
+.header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto 1%;
+}
 
 
 @media only screen and (min-width: 700px) {
@@ -26,4 +33,11 @@
         flex-wrap: wrap;
         justify-content: space-evenly;
     }
+    .header-container {
+      flex-direction: row;
+    }
+
+    /* .open-review-header {
+      text-align: center;
+  } */
   }

@@ -1,7 +1,7 @@
 form {
   display: flex;
   align-self: center;
-  justify-content: center;
+  /* justify-content: flex-end; */
 }
 
 select, label {

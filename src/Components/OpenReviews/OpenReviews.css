@@ -26,18 +26,28 @@
   margin: auto 1%;
 }
 
+.header-container > h2{
+font-size: 1.5em;
+}
+
 
 @media only screen and (min-width: 700px) {
-    .card-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-    }
-    .header-container {
+  .card-container {
       flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+  }
+  .header-container {
+    flex-direction: row;
+  }
+
+  .header-container > h2{
+    font-size: 1.5em;
+    margin: 2% 0 0 2%;
     }
 
-    /* .open-review-header {
-      text-align: center;
-  } */
+  .header-container > form{
+    margin-top: 2%;
   }
+
+}

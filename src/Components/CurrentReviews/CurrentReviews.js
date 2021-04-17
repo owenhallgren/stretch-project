@@ -1,7 +1,7 @@
 import React from 'react'
 import './CurrentReviews.css'
 
-const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
+const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, deleteReview} ) => {
   const matchedReviews = state.openReviews.filter(review => review.reviewer === state.user && review.status === 'active')
   const reviewTable = matchedReviews.map(review => {
     return(
@@ -29,8 +29,46 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
     )
   })
 
+  //below is new
+  const myReviews = state.openReviews.filter(review => review.username === state.username && review.status === '')
+  const completedRequestTable = myReviews.map(review => {
+    return(
+      <tr key={review.id}>
+          <td>{review.date}</td>
+          <td>{review.username}</td>
+          <td><a href={review.repo} target='_blank' rel="noreferrer">{review.repo}</a></td>
+          <td>{review.status || 'pending'}</td>
+          <td><button id={review.id} onClick={(e) => deleteReview(e)}>Delete</button></td>
+
+      </tr>
+    )
+  })
+
+
+
     return (
       <>
+      <div className='table-container'>
+        <h1 className='table-header'>My Requests</h1>
+        <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Repo</th>
+                <th>Status</th>
+                <th></th>
+        </tr>
+        </thead>
+        <tbody>
+           {completedRequestTable && <p>no reviews available</p>} 
+        </tbody>
+      </table>
+      </div>
+
+
+
+
       <div className='table-container'>
         <h1 className='table-header'>Active Reviews</h1>
         <table>
@@ -45,7 +83,7 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
         </tr>
         </thead>
         <tbody>
-           {reviewTable}
+           {reviewTable && <p>no reviews available</p>}
         </tbody>
       </table>
       </div>
@@ -62,7 +100,7 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview} ) => {
         </tr>
         </thead>
         <tbody>
-           {completedReviewTable}
+           {completedReviewTable && <p>no reviews available</p>}
         </tbody>
       </table>
       </div>

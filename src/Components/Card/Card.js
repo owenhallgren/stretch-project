@@ -22,8 +22,8 @@ const Card = ( {username, summary, language, date, id, addReview} ) => {
             
             <Modal addReview={addReview} id={id}/>
           </div>
-            <p>Username: {username}</p>
-            <p>Summary: {summary}</p>
+            <p><strong>Username:</strong> {username}</p>
+            <p><strong>Summary:</strong> {summary}</p>
             <div className='card-specifics'>
                 <p><img src={path} alt={language}/> {language}</p>
                 <p>{date}</p>

@@ -121,7 +121,7 @@ class App extends Component {
 
 
 resetFilteredReviews = () => {
-  this.setState({ filteredReviews: []})
+  this.setState({ filteredReviews: [], filterValue: ''})
 }
 
 

@@ -40,6 +40,11 @@ tbody > p {
   margin: 15% 0% 0% 3%;
 }
 
+.empty-review-table {
+  background-color: #F69373;
+  border: none;
+}
+
 ::-webkit-scrollbar {
   background-color: rgba(255, 255, 255, 0);
   height: 10px;

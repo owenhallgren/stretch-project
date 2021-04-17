@@ -17,7 +17,8 @@ class App extends Component {
       noFilteredReviews: false,
       email: 'jacksonmichael@gmail.com',
       username: 'jacksonmcguire',
-      filterValue: ''
+      filterValue: '',
+      error: ''
     }
   }
 
@@ -25,7 +26,7 @@ class App extends Component {
     fetch('http://localhost:3003/api/v1/reviews')
       .then((response) => response.json())
       .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
-      .catch((error) => console.log(error))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
   addReview = (e) => {
@@ -34,7 +35,7 @@ class App extends Component {
     })
       .then((response) => response.json())
       .then((reviews) => this.setState({ openReviews: reviews, filteredReviews: [], filterValue: ''}))
-      .catch((error) => console.log(error))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
   
 
@@ -48,7 +49,7 @@ class App extends Component {
     } else if(language !== ''){
       this.setState({ noFilteredReviews: true, filterValue: language })
     } else {
-      console.log("and that's a miss")//remove once done testing
+      this.setState({error: 'An error has occured. Please try again later.'})//remove once done testing
     }
   }
 
@@ -58,7 +59,7 @@ class App extends Component {
     })
       .then((response) => response.json())
       .then((reviews) => this.setState({ openReviews: reviews }))
-      .catch((error) => console.log(error))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
   undoReview = (e) => {
@@ -67,7 +68,7 @@ class App extends Component {
     })
       .then((response) => response.json())
       .then((reviews) => this.setState({ openReviews: reviews }))
-      .catch((error) => console.log(error))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
 
@@ -77,7 +78,7 @@ class App extends Component {
     })
       .then((response) => response.json())
       .then((reviews) => this.setState({ openReviews: reviews }))
-      .catch((error) => console.log(error))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
 
@@ -102,7 +103,7 @@ class App extends Component {
 
       .then((response) => response.json())
       .then((review) => this.setState({ openReviews:[review[0], ...this.state.openReviews] }))
-      .catch((error) => console.log(error))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
   deleteReview = (e) => {
@@ -113,7 +114,7 @@ class App extends Component {
     })
     .then((response) => response.json())
     .then((reviews) => this.setState({ openReviews: reviews }))
-    .catch((error) => console.log(error))
+    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
 
   }
 
@@ -127,7 +128,7 @@ resetFilteredReviews = () => {
   render() {
     return (
       <main>
-        <Nav resetFilteredReviews={this.resetFilteredReviews}/>
+        <Nav error={this.state.error} resetFilteredReviews={this.resetFilteredReviews}/>
         <Route exact path='/' render={() => 
           <OpenReviews
             noFilteredReviews={this.state.noFilteredReviews}

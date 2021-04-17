@@ -35,7 +35,7 @@ nav {
     -ms-transition: -ms-transform ease 10s;
     transition: transform ease 10s;
 }
-.pear-logo:active {
+.pear-logo:hover {
     -moz-transform: rotate(3600deg);
     -webkit-transform: rotate(3600deg);
     -o-transform: rotate(3600deg);
@@ -45,7 +45,7 @@ nav {
 
 .nav-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 27%;
 }
 

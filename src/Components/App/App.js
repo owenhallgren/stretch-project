@@ -108,7 +108,7 @@ class App extends Component {
   deleteReview = (e) => {
     console.log('deleted', e.target.id)//delete once working
 
-    fetch(`http://localhost:3003/api/v1/reviews/delete/${e.target.id}`, {
+    fetch(`http://localhost:3003/api/v1/reviews/${e.target.id}`, {
       method: 'DELETE'
     })
     .then((response) => response.json())

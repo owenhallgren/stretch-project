@@ -44,6 +44,11 @@ table tbody tr.active-row {
   color: #A7E3D9;
 }
 
+tbody > p {
+  width: 200%;
+  text-align: center;
+}
+
 .table-header {
   font-size: 1.60em;
   margin: 15% 0% 0% 0%;

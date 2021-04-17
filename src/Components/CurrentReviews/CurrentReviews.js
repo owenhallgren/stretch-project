@@ -61,7 +61,7 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
         </tr>
         </thead>
         <tbody>
-           {completedRequestTable} 
+           {completedRequestTable && <p>no reviews available</p>} 
         </tbody>
       </table>
       </div>
@@ -83,7 +83,7 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
         </tr>
         </thead>
         <tbody>
-           {reviewTable}
+           {reviewTable && <p>no reviews available</p>}
         </tbody>
       </table>
       </div>
@@ -100,7 +100,7 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
         </tr>
         </thead>
         <tbody>
-           {completedReviewTable}
+           {completedReviewTable && <p>no reviews available</p>}
         </tbody>
       </table>
       </div>

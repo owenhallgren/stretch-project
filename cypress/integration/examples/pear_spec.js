@@ -16,4 +16,12 @@ describe('Page load', () => {
     .children()
     .should('have.length', 4)
   })
+
+  it('As a user, when I navigate to my dashboard, I can view all of my active reviews.', () => {
+    cy.get('#dashBoard').click()
+    cy.get('H1')
+    .contains('Active Reviews')
+    cy.get('H1')
+    .contains('Completed Reviews')
+  })
 })

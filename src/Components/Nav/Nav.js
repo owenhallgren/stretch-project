@@ -28,7 +28,7 @@ const Nav = ({resetFilteredReviews}) => {
             <Route exact path='/' render={() => 
               <>
                 <Link to={'/dashboard'} className="link">
-                    <button className='logo-button'><img src={toDo} className='icon' alt='home'></img></button>
+                    <button className='logo-button'><img src={toDo} id='dashBoard' className='icon' alt='dashboard'></img></button>
                 </Link>
                 <Link to={'/new'} className="link">
                     <button className='logo-button'><img src={addReq} alt='new request'></img></button>
@@ -42,7 +42,7 @@ const Nav = ({resetFilteredReviews}) => {
                   <button className='logo-button' onClick={() => resetFilteredReviews()}><img src={home} alt='home'></img></button>
                 </Link>
                 <Link to={'/dashboard'} className="link">
-                    <button className='logo-button'><img src={toDo} className='icon' alt='dashboard'></img></button>
+                    <button className='logo-button'><img src={toDo} id='dashBoard' className='icon' alt='dashboard'></img></button>
                 </Link>
               </>
             }/>

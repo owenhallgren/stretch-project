@@ -17,12 +17,13 @@ class App extends Component {
       noFilteredReviews: false,
       email: 'jacksonmichael@gmail.com',
       username: 'jacksonmcguire',
-      filterValue: ''
+      filterValue: '',
+      error: ''
     }
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3003/api/v1/reviews')
+    fetch('http://localhost:303/api/v1/reviews')
       .then((response) => response.json())
       .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
       .catch((error) => console.log(error))
@@ -127,7 +128,7 @@ resetFilteredReviews = () => {
   render() {
     return (
       <main>
-        <Nav resetFilteredReviews={this.resetFilteredReviews}/>
+        <Nav error={this.state.error} resetFilteredReviews={this.resetFilteredReviews}/>
         <Route exact path='/' render={() => 
           <OpenReviews
             noFilteredReviews={this.state.noFilteredReviews}

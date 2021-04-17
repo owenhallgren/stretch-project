@@ -5,6 +5,10 @@ nav {
     justify-content: space-evenly;
 }
 
+nav > h2 {
+  color: white;
+}
+
 .link{
     align-self: center;
     text-decoration: none;

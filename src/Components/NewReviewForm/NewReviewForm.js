@@ -65,7 +65,6 @@ class NewReviewForm extends Component {
           <select value={this.state.language} onChange={(event) => this.handleChange(event.target.value, 'language')}>
             <option value="" defaultValue>Choose a language</option>
             <option value="C">C</option>
-            <option value="C+">C+</option>
             <option value="C++">C++</option>
             <option value="C#">C#</option>
             <option value="Python">Python</option>

@@ -13,3 +13,61 @@ nav {
 .icon {
     height: 25px;
 }
+
+.app-logo{
+    display: flex;
+    width: 55%;
+}
+
+.app-logo > h1 {
+    color: white;
+    margin: 0;
+    align-self: center;
+}
+
+
+.pear-logo {
+    height: 80%;
+    align-self: center;
+    -moz-transition: -moz-transform ease 10s;
+    -webkit-transition: -webkit-transform ease 10s;
+    -o-transition: -o-transform ease 10;
+    -ms-transition: -ms-transform ease 10s;
+    transition: transform ease 10s;
+}
+.pear-logo:hover {
+    -moz-transform: rotate(3600deg);
+    -webkit-transform: rotate(3600deg);
+    -o-transform: rotate(3600deg);
+    -ms-transform: rotate(3600deg);
+    transform: rotate(3600deg);
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 27%;
+}
+
+.logo-button{
+    background-color: transparent;
+    border: none;
+}
+
+.logo-button >img {
+    height: 30px;
+}
+
+
+
+@media only screen and (max-width: 334px) {
+    .nav-buttons {    
+     width: 34%;
+    }
+  }
+
+  @media only screen and (min-width: 1000px) {
+    .nav-buttons {    
+     width: 20%;
+    }
+  }

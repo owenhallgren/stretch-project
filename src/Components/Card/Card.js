@@ -25,7 +25,7 @@ const Card = ( {username, summary, language, date, id, addReview} ) => {
             <p>Username: {username}</p>
             <p>Summary: {summary}</p>
             <div className='card-specifics'>
-                <p><img src={path} /> {language}</p>
+                <p><img src={path} alt={language}/> {language}</p>
                 <p>{date}</p>
             </div>
         </article>

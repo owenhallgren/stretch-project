@@ -5,7 +5,7 @@ import CurrentReviews from '../CurrentReviews/CurrentReviews'
 import NewReviewForm from '../NewReviewForm/NewReviewForm'
 import './App.css';
 import { Route } from 'react-router-dom';
-import { getAllReviews, updateExistingData } from "../api.js"
+import { getAllReviews, updateExistingData, postNewReview } from "../api.js"
 
 
 class App extends Component {
@@ -62,22 +62,8 @@ class App extends Component {
   submitNewReview = (partialRequest) => {
     const newRequest = {...partialRequest, username: this.state.username, email: this.state.email, 
       status: '', reviewer: ''}
-    fetch(`http://localhost:3003/api/v1/reviews`, {
-      method: 'POST',headers: {
-          "Content-Type": "application/json"
-        },
-      body: JSON.stringify({
-        date: newRequest.date,
-        email: newRequest.email,
-        language: newRequest.language, 
-        repo: newRequest.repo,
-        reviewer: newRequest.reviewer,
-        status: newRequest.status,
-        summary: newRequest.summary, 
-        username: newRequest.username
-      })
-    })
-    .then((response) => response.json())
+
+    postNewReview(newRequest)
     .then((review) => this.setState({ openReviews:[review[0], ...this.state.openReviews] }))
     .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }

@@ -33,7 +33,7 @@ describe('Initial Page', () => {
     cy.get('H1')
     .contains('Active Reviews')
     cy.visit('http://localhost:3000/')
-    cy.get('H1')
+    cy.get('H2')
     .contains('Open Review Requests')
   })
 
@@ -46,7 +46,7 @@ describe('Initial Page', () => {
 })
 
 
-describe.only('Reviews', () => {
+describe('Reviews', () => {
   before(() => {
       cy.fixture('mockReviews.json')
       .then(reviewData => {

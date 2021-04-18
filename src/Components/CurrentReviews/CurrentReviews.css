@@ -63,6 +63,10 @@ tbody > p {
   transform: scale(1.1);
 }
 
+.no-results-message {
+  text-align: center;
+}
+
 @media only screen and (min-width: 700px) {
   .table-header {
     margin: 3% 0% 0% 1.5%;

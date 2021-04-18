@@ -25,7 +25,7 @@ class App extends Component {
 
   componentDidMount = () => {
     getAllReviews()
-    .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
+    .then((mockReviews) => this.resetOpenReviews(mockReviews))
     .catch((error) => this.setErrorMessage())
   }
 
@@ -37,25 +37,25 @@ class App extends Component {
 
   finishReview = (e) => {
     updateExistingData(`complete/${e.target.id}`, 'PUT')
-    .then((reviews) => this.setState({ openReviews: reviews }))
+    .then((reviews) => this.resetOpenReviews(reviews))
     .catch((error) => this.setErrorMessage())
   }
 
   undoReview = (e) => {
     updateExistingData(`undo/${e.target.id}`, 'PUT')
-    .then((reviews) => this.setState({ openReviews: reviews }))
+    .then((reviews) => this.resetOpenReviews(reviews))
     .catch((error) => this.setErrorMessage())
   }
 
   cancelReview = (e) => {
     updateExistingData(`cancel/${e.target.id}`, 'PUT')
-    .then((reviews) => this.setState({ openReviews: reviews }))
+    .then((reviews) => this.resetOpenReviews(reviews))
     .catch((error) => this.setErrorMessage())
   }
 
   deleteReview = (e) => {
     updateExistingData(`${e.target.id}`, 'DELETE')
-    .then((reviews) => this.setState({ openReviews: reviews }))
+    .then((reviews) => this.resetOpenReviews(reviews))
     .catch((error) => this.setErrorMessage())
   }
 
@@ -64,7 +64,7 @@ class App extends Component {
       status: '', reviewer: ''}
 
     postNewReview(newRequest)
-    .then((review) => this.setState({ openReviews:[review[0], ...this.state.openReviews] }))
+    .then((review) => this.resetOpenReviews([review[0], ...this.state.openReviews]))
     .catch((error) => this.setErrorMessage())
   }
 
@@ -72,6 +72,9 @@ class App extends Component {
     this.setState({error: 'An error has occured. Please try again later.'})
   }
 
+  resetOpenReviews = (reviews) => {
+    this.setState({ openReviews: reviews })
+  }
 
   sortByLanguage = (language) => {
     const fReviews = this.state.openReviews.filter(review => review.language === language && !review.reviewer)

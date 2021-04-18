@@ -43,6 +43,7 @@ describe('Initial Page', () => {
     .children()
     .should('have.length', 1)
   })
+
 })
 
 
@@ -197,5 +198,36 @@ describe('Posting a Review Request', () => {
     cy.get('.card-container')
     .children()
     .should('have.length', 5)
+  })
+})
+
+describe.only('Sad Paths', () => {
+  before(() => {
+    cy.fixture('mockReviews.json')
+    .then(reviewData => {
+        cy.intercept('GET', 'http://localhost:3003/api/v1/reviews', reviewData)
+    })
+    cy.visit('http://localhost:3000/') 
+  })
+
+  it('Should show an appropriate message if no requests are available ina searched langauge', () => {
+    cy.get('#languageFilter').select('C')
+    cy.get('.no-results-message').contains('No reviews available')
+  })
+
+  it('Should show an appropriate message if any of the tables have no data', () => {
+    cy.intercept({
+      method: 'PUT',
+      url: 'http://localhost:3003/api/v1/reviews/cancel/1'
+    },
+      {
+        statusCode: 201,
+        body:
+        [{"username":"JeffShepherd","summary":"this is a summary","email":"mynamejeff@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"","reviewer":"","id":1}
+      ]
+      });
+    cy.get('#dashBoard').click()
+    cy.get('#1.cancel-button').click()
+    cy.get('td').contains('no reviews')
   })
 })

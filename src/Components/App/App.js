@@ -26,37 +26,37 @@ class App extends Component {
   componentDidMount = () => {
     getAllReviews()
     .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
-    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    .catch((error) => this.setErrorMessage())
   }
 
   addReview = (e) => {
     updateExistingData(`accept/${e.target.id}/${this.state.user}`, 'PUT')
     .then((reviews) => this.setState({ openReviews: reviews, filteredReviews: [], filterValue: ''}))
-    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    .catch((error) => this.setErrorMessage())
   }
 
   finishReview = (e) => {
     updateExistingData(`complete/${e.target.id}`, 'PUT')
     .then((reviews) => this.setState({ openReviews: reviews }))
-    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    .catch((error) => this.setErrorMessage())
   }
 
   undoReview = (e) => {
     updateExistingData(`undo/${e.target.id}`, 'PUT')
     .then((reviews) => this.setState({ openReviews: reviews }))
-    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    .catch((error) => this.setErrorMessage())
   }
 
   cancelReview = (e) => {
     updateExistingData(`cancel/${e.target.id}`, 'PUT')
     .then((reviews) => this.setState({ openReviews: reviews }))
-    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    .catch((error) => this.setErrorMessage())
   }
 
   deleteReview = (e) => {
     updateExistingData(`${e.target.id}`, 'DELETE')
     .then((reviews) => this.setState({ openReviews: reviews }))
-    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    .catch((error) => this.setErrorMessage())
   }
 
   submitNewReview = (partialRequest) => {
@@ -65,8 +65,13 @@ class App extends Component {
 
     postNewReview(newRequest)
     .then((review) => this.setState({ openReviews:[review[0], ...this.state.openReviews] }))
-    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    .catch((error) => this.setErrorMessage())
   }
+
+  setErrorMessage = () => {
+    this.setState({error: 'An error has occured. Please try again later.'})
+  }
+
 
   sortByLanguage = (language) => {
     const fReviews = this.state.openReviews.filter(review => review.language === language && !review.reviewer)

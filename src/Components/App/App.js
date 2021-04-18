@@ -5,6 +5,10 @@ import CurrentReviews from '../CurrentReviews/CurrentReviews'
 import NewReviewForm from '../NewReviewForm/NewReviewForm'
 import './App.css';
 import { Route } from 'react-router-dom';
+const sgMail = require('@sendgrid/mail')
+
+const key = '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'
+sgMail.setApiKey(key)
 
 
 class App extends Component {

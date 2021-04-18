@@ -4,9 +4,9 @@
 }
 
 table {
-  width: 100%;
+  width: 98%;
   border-collapse: collapse;
-  margin: 25px 0;
+  margin: 25px auto;
   font-size: 0.9em;
   font-family: sans-serif;
   min-width: 400px;
@@ -26,28 +26,23 @@ table td {
 
 table tbody tr {
   border-bottom: 1px solid #dddddd;
-}
-
-table tbody tr:nth-of-type(odd) {
   background-color: #f3f3f3;
+
 }
 
-table tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
-}
-
-table tbody tr:last-of-type {
-  border-bottom: 2px solid #06203870;
-}
-
-table tbody tr.active-row {
-  font-weight: bold;
-  color: #A7E3D9;
+tbody > p {
+  width: 200%;
+  text-align: center;
 }
 
 .table-header {
-  font-size: 1.60em;
-  margin: 15% 0% 0% 3%;
+  font-size: 1.5em;
+  margin: 7% 0% 0% 1%;
+}
+
+.empty-review-table {
+  background-color: #F69373;
+  border: none;
 }
 
 ::-webkit-scrollbar {
@@ -57,6 +52,23 @@ table tbody tr.active-row {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #A7E3D9;
-  border-radius: 5px;;
+  background-color: lightgrey;
+  border-radius: 5px;
+}
+
+
+
+.dash-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.no-results-message {
+  text-align: center;
+}
+
+@media only screen and (min-width: 700px) {
+  .table-header {
+    margin: 3% 0% 0% 1.5%;
+  }
 }

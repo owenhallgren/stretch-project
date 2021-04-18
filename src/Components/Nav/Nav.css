@@ -2,50 +2,68 @@ nav {
     background-color:#333333;
     height: 8vh;
     display: flex;
-    justify-content: space-evenly;
-}
-
-.link{
-    align-self: center;
-    text-decoration: none;
-}
-
-.icon {
-    height: 25px;
-}
-
-.app-logo{
-    display: flex;
-    width: 55%;
+    justify-content: space-between;
 }
 
 .app-logo > h1 {
-    color: white;
-    margin: 0;
-    align-self: center;
+  color: white;
+  padding-top: 6%;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 2.5em;
 }
 
+.message {
+  color: white;
+  margin: auto;
+}
+
+.link {
+  align-self: center;
+  text-decoration: none;
+}
+
+.icon {
+  height: 25px;
+}
+
+.icon:hover {
+  cursor: pointer;
+  transform: scale(1.3)
+}
+
+.app-logo{
+  display: flex;
+  width: 30%;
+  margin-left: 1%;
+}
 
 .pear-logo {
     height: 80%;
     align-self: center;
-    -moz-transition: -moz-transform ease 10s;
-    -webkit-transition: -webkit-transform ease 10s;
-    -o-transition: -o-transform ease 10;
-    -ms-transition: -ms-transform ease 10s;
-    transition: transform ease 10s;
 }
-.pear-logo:active {
-    -moz-transform: rotate(3600deg);
-    -webkit-transform: rotate(3600deg);
-    -o-transform: rotate(3600deg);
-    -ms-transform: rotate(3600deg);
-    transform: rotate(3600deg);
+
+.bite {
+  display: none;
+}
+
+.app-logo:hover .bite {
+  display: inline;
+  z-index: 99;
+}
+
+.app-logo:hover .full {
+  display: none;
+}
+
+.app-logo > h1 {
+  color: white;
+  margin: 0;
+  align-self: center;
 }
 
 .nav-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 27%;
 }
 
@@ -58,16 +76,24 @@ nav {
     height: 30px;
 }
 
-
-
 @media only screen and (max-width: 334px) {
     .nav-buttons {    
      width: 34%;
     }
   }
 
-  @media only screen and (min-width: 1000px) {
-    .nav-buttons {    
-     width: 20%;
-    }
+@media only screen and (min-width: 700px) {
+  .app-logo {
+    width: 20%;
   }
+}
+
+@media only screen and (min-width: 1000px) {
+  .nav-buttons {    
+    width: 20%;
+  }
+
+  .app-logo {
+    width: 15%;
+  }
+}

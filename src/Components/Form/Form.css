@@ -1,9 +1,25 @@
 form {
   display: flex;
   align-self: center;
-  justify-content: center;
 }
 
 select, label {
-  margin: 1%;
+  margin: auto 1%;
+}
+
+
+.filter-form {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+
+}
+
+
+@media only screen and (min-width: 700px) {
+  .filter-form {
+    justify-content: flex-end;
+    margin-right: 2%; 
+  }
+
 }

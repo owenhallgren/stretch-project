@@ -17,7 +17,8 @@ class App extends Component {
       noFilteredReviews: false,
       email: 'jacksonmichael@gmail.com',
       username: 'jacksonmcguire',
-      filterValue: ''
+      filterValue: '',
+      error: ''
     }
   }
 
@@ -25,7 +26,7 @@ class App extends Component {
     fetch('http://localhost:3003/api/v1/reviews')
       .then((response) => response.json())
       .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
-      .catch((error) => console.log(error))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
   addReview = (e) => {
@@ -34,86 +35,100 @@ class App extends Component {
     })
       .then((response) => response.json())
       .then((reviews) => this.setState({ openReviews: reviews, filteredReviews: [], filterValue: ''}))
-      .catch((error) => console.log(error))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
   
 
-sortByLanguage = (language) => {
-  const fReviews = this.state.openReviews.filter(review => review.language === language && !review.reviewer)
-  console.log(language)
-  if(!language) {
-    this.setState({ filteredReviews: [], noFilteredReviews: false, filterValue: language})//fix applied here
-  } else if(fReviews.length){
-    this.setState({ filteredReviews: fReviews, noFilteredReviews: false, filterValue: language})
-  } else if(language !== ''){
-    this.setState({ noFilteredReviews: true, filterValue: language })
-  } else {
-    console.log("and that's a miss")//remove once done testing
+  sortByLanguage = (language) => {
+    const fReviews = this.state.openReviews.filter(review => review.language === language && !review.reviewer)
+    console.log(language)
+    if(!language) {
+      this.setState({ filteredReviews: [], noFilteredReviews: false, filterValue: language})//fix applied here
+    } else if(fReviews.length){
+      this.setState({ filteredReviews: fReviews, noFilteredReviews: false, filterValue: language})
+    } else if(language !== ''){
+      this.setState({ noFilteredReviews: true, filterValue: language })
+    } else {
+      this.setState({error: 'An error has occured. Please try again later.'})//remove once done testing
+    }
   }
-}
 
-finishReview = (e) => {
-  fetch(`http://localhost:3003/api/v1/reviews/complete/${e.target.id}`, {
-    method: 'PUT'
-  })
-    .then((response) => response.json())
-    .then((reviews) => this.setState({ openReviews: reviews }))
-    .catch((error) => console.log(error))
-}
-
-undoReview = (e) => {
-  fetch(`http://localhost:3003/api/v1/reviews/undo/${e.target.id}`, {
-    method: 'PUT'
-  })
-    .then((response) => response.json())
-    .then((reviews) => this.setState({ openReviews: reviews }))
-    .catch((error) => console.log(error))
-}
-
-
-cancelReview = (e) => {
-  fetch(`http://localhost:3003/api/v1/reviews/cancel/${e.target.id}`, {
-    method: 'PUT'
-  })
-    .then((response) => response.json())
-    .then((reviews) => this.setState({ openReviews: reviews }))
-    .catch((error) => console.log(error))
-}
-
-
-submitNewReview = (partialRequest) => {
-  const newRequest = {...partialRequest, username: this.state.username, email: this.state.email, 
-    status: '', reviewer: ''}
-    fetch(`http://localhost:3003/api/v1/reviews`, {
-    method: 'POST',headers: {
-        "Content-Type": "application/json"
-      },
-    body: JSON.stringify({
-      date: newRequest.date,
-      email: newRequest.email,
-      language: newRequest.language, 
-      repo: newRequest.repo,
-      reviewer: newRequest.reviewer,
-      status: newRequest.status,
-      summary: newRequest.summary, 
-      username: newRequest.username
+  finishReview = (e) => {
+    fetch(`http://localhost:3003/api/v1/reviews/complete/${e.target.id}`, {
+      method: 'PUT'
     })
-  })
+      .then((response) => response.json())
+      .then((reviews) => this.setState({ openReviews: reviews }))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+  }
 
+  undoReview = (e) => {
+    fetch(`http://localhost:3003/api/v1/reviews/undo/${e.target.id}`, {
+      method: 'PUT'
+    })
+      .then((response) => response.json())
+      .then((reviews) => this.setState({ openReviews: reviews }))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+  }
+
+
+  cancelReview = (e) => {
+    fetch(`http://localhost:3003/api/v1/reviews/cancel/${e.target.id}`, {
+      method: 'PUT'
+    })
+      .then((response) => response.json())
+      .then((reviews) => this.setState({ openReviews: reviews }))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+  }
+
+
+  submitNewReview = (partialRequest) => {
+    const newRequest = {...partialRequest, username: this.state.username, email: this.state.email, 
+      status: '', reviewer: ''}
+      fetch(`http://localhost:3003/api/v1/reviews`, {
+      method: 'POST',headers: {
+          "Content-Type": "application/json"
+        },
+      body: JSON.stringify({
+        date: newRequest.date,
+        email: newRequest.email,
+        language: newRequest.language, 
+        repo: newRequest.repo,
+        reviewer: newRequest.reviewer,
+        status: newRequest.status,
+        summary: newRequest.summary, 
+        username: newRequest.username
+      })
+    })
+
+      .then((response) => response.json())
+      .then((review) => this.setState({ openReviews:[review[0], ...this.state.openReviews] }))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+  }
+
+  deleteReview = (e) => {
+    console.log('deleted', e.target.id)//delete once working
+
+    fetch(`http://localhost:3003/api/v1/reviews/${e.target.id}`, {
+      method: 'DELETE'
+    })
     .then((response) => response.json())
-    .then((review) => this.setState({ openReviews:[review[0], ...this.state.openReviews] }))
-    .catch((error) => console.log(error))
-}
+    .then((reviews) => this.setState({ openReviews: reviews }))
+    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+
+  }
+
+
 
 resetFilteredReviews = () => {
-  this.setState({ filteredReviews: []})
+  this.setState({ filteredReviews: [], filterValue: ''})
 }
 
 
   render() {
     return (
       <main>
-        <Nav resetFilteredReviews={this.resetFilteredReviews}/>
+        <Nav error={this.state.error} resetFilteredReviews={this.resetFilteredReviews}/>
         <Route exact path='/' render={() => 
           <OpenReviews
             noFilteredReviews={this.state.noFilteredReviews}
@@ -125,10 +140,16 @@ resetFilteredReviews = () => {
           />
         }/>
         <Route exact path='/dashboard' render={() => 
-                <CurrentReviews state={this.state} finishReview={this.finishReview} undoReview={this.undoReview} cancelReview={this.cancelReview}/>
+          <CurrentReviews 
+          state={this.state} 
+          finishReview={this.finishReview} 
+          undoReview={this.undoReview} 
+          cancelReview={this.cancelReview}
+          deleteReview={this.deleteReview}
+          />
         }/>
         <Route exact path='/new' render={() => 
-                <NewReviewForm submitNewReview={this.submitNewReview}/>
+          <NewReviewForm submitNewReview={this.submitNewReview}/>
         }/>
       </main>
     )

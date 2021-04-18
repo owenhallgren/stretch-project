@@ -20,6 +20,10 @@
   resize: none;
 }
 
+.submit-heading {
+  font-size: 1.5em;
+}
+
 .new-review-form > button {
   width: 40%;
   margin: 0 auto;

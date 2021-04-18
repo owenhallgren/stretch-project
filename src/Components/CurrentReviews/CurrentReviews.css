@@ -37,7 +37,7 @@ tbody > p {
 
 .table-header {
   font-size: 1.5em;
-  margin: 15% 0% 0% 1%;
+  margin: 7% 0% 0% 1%;
 }
 
 .empty-review-table {
@@ -65,6 +65,6 @@ tbody > p {
 
 @media only screen and (min-width: 700px) {
   .table-header {
-    margin: 8% 0% 0% 1.5%;
+    margin: 3% 0% 0% 1.5%;
   }
 }

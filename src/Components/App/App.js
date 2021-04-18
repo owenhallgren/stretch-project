@@ -3,6 +3,7 @@ import Nav from '../Nav/Nav';
 import OpenReviews from '../OpenReviews/OpenReviews'
 import CurrentReviews from '../CurrentReviews/CurrentReviews'
 import NewReviewForm from '../NewReviewForm/NewReviewForm'
+import Login from '../Login/Login';
 import './App.css';
 import { Route } from 'react-router-dom';
 
@@ -13,19 +14,37 @@ class App extends Component {
     this.state = {
       openReviews: [],
       filteredReviews: [],
-      user: 'Jackson',
+      user: '',
       noFilteredReviews: false,
-      email: 'jacksonmichael@gmail.com',
-      username: 'jacksonmcguire',
+      email: '',
+      username: '',
       filterValue: '',
-      error: ''
+      error: '',
+      isLoggedIn: false
     }
+  }
+
+    setUsername = (e, username) => {
+      e.preventDefault()
+      this.setState({user: username})
+    }
+
+  setUser = (user) => {
+    fetch(`http://localhost:3003/api/v1/${this.state.username}`)
+    .then((response) => response.json())
+    .then(user => this.setState({user: user.user, email: user.email}))
+
   }
 
   componentDidMount = () => {
     fetch('http://localhost:3003/api/v1/reviews')
       .then((response) => response.json())
       .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
+      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+
+      fetch('http://localhost:3003/api/v1/users')
+      .then((response) => response.json())
+      .then(user => this.setState({user: user[0].user, email: user[0].email, username: user[0].username}))
       .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
@@ -129,6 +148,7 @@ resetFilteredReviews = () => {
     return (
       <main>
         <Nav error={this.state.error} resetFilteredReviews={this.resetFilteredReviews}/>
+        <Login setUsername={this.setUsername}/>
         <Route exact path='/' render={() => 
           <OpenReviews
             noFilteredReviews={this.state.noFilteredReviews}

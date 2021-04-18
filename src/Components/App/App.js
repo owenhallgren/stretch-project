@@ -47,7 +47,6 @@ class App extends Component {
     .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
-
   cancelReview = (e) => {
     updateExistingData(`cancel/${e.target.id}`, 'PUT')
     .then((reviews) => this.setState({ openReviews: reviews }))
@@ -55,12 +54,7 @@ class App extends Component {
   }
 
   deleteReview = (e) => {
-    console.log('deleted', e.target.id)//delete once working
-
-    fetch(`http://localhost:3003/api/v1/reviews/${e.target.id}`, {
-      method: 'DELETE'
-    })
-    .then((response) => response.json())
+    updateExistingData(`${e.target.id}`, 'DELETE')
     .then((reviews) => this.setState({ openReviews: reviews }))
     .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
@@ -68,7 +62,7 @@ class App extends Component {
   submitNewReview = (partialRequest) => {
     const newRequest = {...partialRequest, username: this.state.username, email: this.state.email, 
       status: '', reviewer: ''}
-      fetch(`http://localhost:3003/api/v1/reviews`, {
+    fetch(`http://localhost:3003/api/v1/reviews`, {
       method: 'POST',headers: {
           "Content-Type": "application/json"
         },
@@ -83,23 +77,22 @@ class App extends Component {
         username: newRequest.username
       })
     })
-
-      .then((response) => response.json())
-      .then((review) => this.setState({ openReviews:[review[0], ...this.state.openReviews] }))
-      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    .then((response) => response.json())
+    .then((review) => this.setState({ openReviews:[review[0], ...this.state.openReviews] }))
+    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
   sortByLanguage = (language) => {
     const fReviews = this.state.openReviews.filter(review => review.language === language && !review.reviewer)
-    console.log(language)
+
     if(!language) {
-      this.setState({ filteredReviews: [], noFilteredReviews: false, filterValue: language})//fix applied here
+      this.setState({ filteredReviews: [], noFilteredReviews: false, filterValue: language})
     } else if(fReviews.length){
       this.setState({ filteredReviews: fReviews, noFilteredReviews: false, filterValue: language})
     } else if(language !== ''){
       this.setState({ noFilteredReviews: true, filterValue: language })
     } else {
-      this.setState({error: 'An error has occured. Please try again later.'})//remove once done testing
+      this.setState({error: 'An error has occured. Please try again later.'})
     }
   }
 

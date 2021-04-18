@@ -6,7 +6,7 @@
     border: 5px solid rgb(167,227,217);
     width: 80%;
     height: 45vh;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.603) 0px 1px 15px 0px;
     border-radius: 6px;
@@ -20,7 +20,12 @@
 
 .card-specifics {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+}
+
+.card-specifics > p {
+  align-self: center;
+  margin: auto 0 0 0;
 }
 
 

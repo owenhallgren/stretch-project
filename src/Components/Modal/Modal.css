@@ -75,8 +75,12 @@
   width: 7em;
   border-radius: 6px;
   border: 1px solid #1F4534;
-  cursor: pointer;
   background-color: #A7E3D9;
+}
+
+.review-button:hover {
+  cursor: pointer;
+  transform: scale(1.1)
 }
 
 

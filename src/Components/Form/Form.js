@@ -4,7 +4,7 @@ import './Form.css'
 const Form = ({filterValue, sortByLanguage}) => {
 
     return (
-      <form>
+      <form className="filter-form" >
         <label htmlFor="languageFilter">Sort by: </label>
         <select value={filterValue} onChange={(e) => sortByLanguage(e.target.value)} id="languageFilter">
           <option value=""></option>

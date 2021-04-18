@@ -10,8 +10,8 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
           <td>{review.username}</td>
           <td><a href={review.repo} target='_blank' rel="noreferrer">{review.repo}</a></td>
           <td>{review.email}</td>
-          <td><button className='complete-button' id={review.id} onClick={(e) => finishReview(e)}>Complete</button></td>
-          <td><button className='cancel-button' id={review.id} onClick={(e) => cancelReview(e)}>X</button></td>
+          <td><button title="complete and close this review request" className='complete-button dash-button' id={review.id} onClick={(e) => finishReview(e)}>Complete</button></td>
+          <td><button title="I am unable to complete this review" className='cancel-button dash-button' id={review.id} onClick={(e) => cancelReview(e)}>X</button></td>
       </tr>
     )
   })
@@ -24,7 +24,7 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
           <td>{review.username}</td>
           <td><a href={review.repo} target='_blank' rel="noreferrer">{review.repo}</a></td>
           <td>{review.email}</td>
-          <td><button className='undo-button' id={review.id} onClick={(e) => undoReview(e)}>Undo</button></td>
+          <td><button title="return request to my active queue" className='undo-button dash-button' id={review.id} onClick={(e) => undoReview(e)}>Undo</button></td>
       </tr>
     )
   })
@@ -38,7 +38,7 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
           <td>{review.username}</td>
           <td><a href={review.repo} target='_blank' rel="noreferrer">{review.repo}</a></td>
           <td>{review.status || 'pending'}</td>
-          <td><button id={review.id} onClick={(e) => deleteReview(e)}>Delete</button></td>
+          <td><button title="delete this review request" className="dash-button" id={review.id} onClick={(e) => deleteReview(e)}>Delete</button></td>
 
       </tr>
     )

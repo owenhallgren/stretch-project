@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import toDo from '../../icons/to-do.png'
 import pear from '../../icons/pear.png'
+import pearFull from '../../icons/pearFull.png'
 import addReq from '../../icons/add-req.png'
 import home from '../../icons/home.png'
 import './Nav.css'
@@ -10,7 +11,8 @@ const Nav = ({resetFilteredReviews, error}) => {
     return (
         <nav>
             <div className='app-logo'>
-              <img src={pear} alt='pear-logo' className='pear-logo'></img>
+              <img src={pear} alt='pear-logo' className='pear-logo bite'></img>
+              <img src={pearFull} alt='pear-logo' className='pear-logo full'></img>
               <h1>Pear</h1>
             </div>
             {error && <h2 className="message">⚠️ {error}</h2>}

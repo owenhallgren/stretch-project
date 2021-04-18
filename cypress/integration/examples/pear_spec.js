@@ -46,7 +46,7 @@ describe('Initial Page', () => {
 })
 
 
-describe('Reviews', () => {
+describe.only('Reviews', () => {
   before(() => {
       cy.fixture('mockReviews.json')
       .then(reviewData => {
@@ -56,19 +56,19 @@ describe('Reviews', () => {
 
       cy.intercept({
         method: 'PUT',
-        url: 'http://localhost:3003/api/v1/reviews/accept/69/Jackson'
+        url: 'http://localhost:3003/api/v1/reviews/accept/22/Jackson'
       },
         {
           statusCode: 200,
           body:
-          [{"username":"JeffShepherd","summary":"this is a summary","email":"nazosnowboarder@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"active","reviewer":"Jackson","id":420},
-          {"username":"jacksonmcguire","summary":"this is a summary","email":"lumbersexual@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":69},
-          {"username":"josharagon","summary":"this is a summary","email":"sucksquishbangblow@gmail.com","language":"C++","date":"02/24/21","repo":"https://github.com/josharagon/self-care-center","status":"complete","reviewer":"Jackson","id":42069},
-          {"username":"owenhallgren","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"C#","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"","reviewer":"","id":69420},
-          {"username":"rdtho2525","summary":"this is a summary","email":"reggietheveggie@msn.com","language":"Ruby","date":"02/01/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"complete","reviewer":"Jackson","id":6969},
-          {"username":"aemiers","summary":"this is a summary","email":"ispeakgerman@gmail.com","language":"Java","date":"06/15/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"","reviewer":"","id":420420},
-          {"username":"ConnorAndersonLarson","summary":"this is a summary","email":"igivehousetours@gmail.com","language":"PHP","date":"09/18/21","repo":"https://github.com/josharagon/self-care-center","status":"","reviewer":"","id":123},
-          {"username":"Shakikka","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"active","reviewer":"Jackson","id":69420247}
+          [{"username":"JeffShepherd","summary":"this is a summary","email":"mynamejeff@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"active","reviewer":"Jackson","id":1},
+          {"username":"jacksonmcguire","summary":"this is a summary","email":"lumberjack@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":22},
+          {"username":"josharagon","summary":"this is a summary","email":"joshy@gmail.com","language":"C++","date":"02/24/21","repo":"https://github.com/josharagon/self-care-center","status":"complete","reviewer":"Jackson","id":333},
+          {"username":"owenhallgren","summary":"this is a summary","email":"owenhallgren@hotmail.com","language":"C#","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"","reviewer":"","id":4444},
+          {"username":"rdtho2525","summary":"this is a summary","email":"reggieveggie@msn.com","language":"Ruby","date":"02/01/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"complete","reviewer":"Jackson","id":5050},
+          {"username":"aemiers","summary":"this is a summary","email":"ispeakgerman@gmail.com","language":"Java","date":"06/15/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"","reviewer":"","id":6060},
+          {"username":"ConnorAndersonLarson","summary":"this is a summary","email":"cal@gmail.com","language":"PHP","date":"09/18/21","repo":"https://github.com/josharagon/self-care-center","status":"","reviewer":"","id":123},
+          {"username":"Shakikka","summary":"this is a summary","email":"shakika@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"active","reviewer":"Jackson","id":777}
         ]
         });
 
@@ -86,22 +86,22 @@ describe('Reviews', () => {
   it('As a user, when I click complete on an open review, the review will appear in my completed table view', () => { 
     cy.intercept({
       method: 'PUT',
-      url: 'http://localhost:3003/api/v1/reviews/complete/69420247'
+      url: 'http://localhost:3003/api/v1/reviews/complete/777'
     },
       {
         statusCode: 200,
         body:
-        [{"username":"JeffShepherd","summary":"this is a summary","email":"nazosnowboarder@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"active","reviewer":"Jackson","id":420},
-        {"username":"jacksonmcguire","summary":"this is a summary","email":"lumbersexual@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":69},
-        {"username":"josharagon","summary":"this is a summary","email":"sucksquishbangblow@gmail.com","language":"C++","date":"02/24/21","repo":"https://github.com/josharagon/self-care-center","status":"complete","reviewer":"Jackson","id":42069},
-        {"username":"owenhallgren","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"C#","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"","reviewer":"","id":69420},
-        {"username":"rdtho2525","summary":"this is a summary","email":"reggietheveggie@msn.com","language":"Ruby","date":"02/01/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"complete","reviewer":"Jackson","id":6969},
-        {"username":"aemiers","summary":"this is a summary","email":"ispeakgerman@gmail.com","language":"Java","date":"06/15/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"","reviewer":"","id":420420},
-        {"username":"ConnorAndersonLarson","summary":"this is a summary","email":"igivehousetours@gmail.com","language":"PHP","date":"09/18/21","repo":"https://github.com/josharagon/self-care-center","status":"","reviewer":"","id":123},
-        {"username":"Shakikka","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"complete","reviewer":"Jackson","id":69420247}
+        [{"username":"JeffShepherd","summary":"this is a summary","email":"mynamejeff@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"active","reviewer":"Jackson","id":1},
+        {"username":"jacksonmcguire","summary":"this is a summary","email":"lumberjack@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":22},
+        {"username":"josharagon","summary":"this is a summary","email":"joshy@gmail.com","language":"C++","date":"02/24/21","repo":"https://github.com/josharagon/self-care-center","status":"complete","reviewer":"Jackson","id":333},
+        {"username":"owenhallgren","summary":"this is a summary","email":"owenhallgren@hotmail.com","language":"C#","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"","reviewer":"","id":4444},
+        {"username":"rdtho2525","summary":"this is a summary","email":"reggieveggie@msn.com","language":"Ruby","date":"02/01/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"complete","reviewer":"Jackson","id":5050},
+        {"username":"aemiers","summary":"this is a summary","email":"ispeakgerman@gmail.com","language":"Java","date":"06/15/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"","reviewer":"","id":6060},
+        {"username":"ConnorAndersonLarson","summary":"this is a summary","email":"cal@gmail.com","language":"PHP","date":"09/18/21","repo":"https://github.com/josharagon/self-care-center","status":"","reviewer":"","id":123},
+        {"username":"Shakikka","summary":"this is a summary","email":"shakika@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"complete","reviewer":"Jackson","id":777}
       ]
       });
-    cy.get('#69420247').click()
+    cy.get('#777').click()
     cy.get('#active').find('tr').its('length').should('eq', 3)
     cy.get('#completed').find('tr').its('length').should('eq', 4)
     
@@ -110,22 +110,22 @@ describe('Reviews', () => {
   it('As a user, when I click undo on a completed review, the review will be moved back to my open reviews', () => { 
     cy.intercept({
       method: 'PUT',
-      url: 'http://localhost:3003/api/v1/reviews/undo/69420247'
+      url: 'http://localhost:3003/api/v1/reviews/undo/777'
     },
       {
         statusCode: 201,
         body:
-        [{"username":"JeffShepherd","summary":"this is a summary","email":"nazosnowboarder@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"active","reviewer":"Jackson","id":420},
-        {"username":"jacksonmcguire","summary":"this is a summary","email":"lumbersexual@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":69},
-        {"username":"josharagon","summary":"this is a summary","email":"sucksquishbangblow@gmail.com","language":"C++","date":"02/24/21","repo":"https://github.com/josharagon/self-care-center","status":"complete","reviewer":"Jackson","id":42069},
-        {"username":"owenhallgren","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"C#","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"","reviewer":"","id":69420},
-        {"username":"rdtho2525","summary":"this is a summary","email":"reggietheveggie@msn.com","language":"Ruby","date":"02/01/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"complete","reviewer":"Jackson","id":6969},
-        {"username":"aemiers","summary":"this is a summary","email":"ispeakgerman@gmail.com","language":"Java","date":"06/15/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"","reviewer":"","id":420420},
-        {"username":"ConnorAndersonLarson","summary":"this is a summary","email":"igivehousetours@gmail.com","language":"PHP","date":"09/18/21","repo":"https://github.com/josharagon/self-care-center","status":"","reviewer":"","id":123},
-        {"username":"Shakikka","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"active","reviewer":"Jackson","id":69420247}
+        [{"username":"JeffShepherd","summary":"this is a summary","email":"mynamejeff@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"active","reviewer":"Jackson","id":1},
+        {"username":"jacksonmcguire","summary":"this is a summary","email":"lumberjack@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":22},
+        {"username":"josharagon","summary":"this is a summary","email":"joshy@gmail.com","language":"C++","date":"02/24/21","repo":"https://github.com/josharagon/self-care-center","status":"complete","reviewer":"Jackson","id":333},
+        {"username":"owenhallgren","summary":"this is a summary","email":"owenhallgren@hotmail.com","language":"C#","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"","reviewer":"","id":4444},
+        {"username":"rdtho2525","summary":"this is a summary","email":"reggieveggie@msn.com","language":"Ruby","date":"02/01/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"complete","reviewer":"Jackson","id":5050},
+        {"username":"aemiers","summary":"this is a summary","email":"ispeakgerman@gmail.com","language":"Java","date":"06/15/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"","reviewer":"","id":6060},
+        {"username":"ConnorAndersonLarson","summary":"this is a summary","email":"cal@gmail.com","language":"PHP","date":"09/18/21","repo":"https://github.com/josharagon/self-care-center","status":"","reviewer":"","id":123},
+        {"username":"Shakikka","summary":"this is a summary","email":"shakika@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"active","reviewer":"Jackson","id":777}
       ]
       });
-    cy.get('#69420247').click()
+    cy.get('#777').click()
     cy.get('#active').find('tr').its('length').should('eq', 4)
     cy.get('#completed').find('tr').its('length').should('eq', 3)  
   })
@@ -133,22 +133,22 @@ describe('Reviews', () => {
   it('As a user, when I click undo on a completed review, the review will be moved back to my open reviews', () => { 
     cy.intercept({
       method: 'PUT',
-      url: 'http://localhost:3003/api/v1/reviews/cancel/420'
+      url: 'http://localhost:3003/api/v1/reviews/cancel/1'
     },
       {
         statusCode: 201,
         body:
-        [{"username":"JeffShepherd","summary":"this is a summary","email":"nazosnowboarder@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"","reviewer":"","id":420},
-        {"username":"jacksonmcguire","summary":"this is a summary","email":"lumbersexual@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":69},
-        {"username":"josharagon","summary":"this is a summary","email":"sucksquishbangblow@gmail.com","language":"C++","date":"02/24/21","repo":"https://github.com/josharagon/self-care-center","status":"complete","reviewer":"Jackson","id":42069},
-        {"username":"owenhallgren","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"C#","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"","reviewer":"","id":69420},
-        {"username":"rdtho2525","summary":"this is a summary","email":"reggietheveggie@msn.com","language":"Ruby","date":"02/01/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"complete","reviewer":"Jackson","id":6969},
-        {"username":"aemiers","summary":"this is a summary","email":"ispeakgerman@gmail.com","language":"Java","date":"06/15/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"","reviewer":"","id":420420},
-        {"username":"ConnorAndersonLarson","summary":"this is a summary","email":"igivehousetours@gmail.com","language":"PHP","date":"09/18/21","repo":"https://github.com/josharagon/self-care-center","status":"","reviewer":"","id":123},
-        {"username":"Shakikka","summary":"this is a summary","email":"owenhallgren69@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"active","reviewer":"Jackson","id":69420247}
+        [{"username":"JeffShepherd","summary":"this is a summary","email":"mynamejeff@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"","reviewer":"","id":1},
+        {"username":"jacksonmcguire","summary":"this is a summary","email":"lumberjack@gmail.com","language":"JavaScript","date":"02/24/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"active","reviewer":"Jackson","id":22},
+        {"username":"josharagon","summary":"this is a summary","email":"joshy@gmail.com","language":"C++","date":"02/24/21","repo":"https://github.com/josharagon/self-care-center","status":"complete","reviewer":"Jackson","id":333},
+        {"username":"owenhallgren","summary":"this is a summary","email":"owenhallgren@hotmail.com","language":"C#","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"","reviewer":"","id":4444},
+        {"username":"rdtho2525","summary":"this is a summary","email":"reggieveggie@msn.com","language":"Ruby","date":"02/01/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"complete","reviewer":"Jackson","id":5050},
+        {"username":"aemiers","summary":"this is a summary","email":"ispeakgerman@gmail.com","language":"Java","date":"06/15/21","repo":"https://github.com/Jacksonmcguire/intention-timer","status":"","reviewer":"","id":6060},
+        {"username":"ConnorAndersonLarson","summary":"this is a summary","email":"cal@gmail.com","language":"PHP","date":"09/18/21","repo":"https://github.com/josharagon/self-care-center","status":"","reviewer":"","id":123},
+        {"username":"Shakikka","summary":"this is a summary","email":"shakika@hotmail.com","language":"Other","date":"02/24/21","repo":"https://github.com/owenhallgren/js-fun-at-the-library","status":"active","reviewer":"Jackson","id":777}
       ]
       });
-    cy.get('#420.cancel-button').click()
+    cy.get('#1.cancel-button').click()
     cy.get('#home').click()
     cy.get('.card-container')
     .children()
@@ -169,7 +169,7 @@ describe('Posting a Review Request', () => {
         statusCode: 200,
         body:
         [
-        {"username":"LumberJackJoe","summary":"I need help!","email":"owenhallgren69@hotmail.com","language":"Other","date":"02/24/21","repo":"github.com/Joemama","status":"","reviewer":"","id":123456}
+        {"username":"LumberJackJoe","summary":"I need help!","email":"lumberjackjoe@hotmail.com","language":"Other","date":"02/24/21","repo":"github.com/Joemama","status":"","reviewer":"","id":123456}
       ]
       });
 

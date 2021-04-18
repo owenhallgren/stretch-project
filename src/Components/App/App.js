@@ -5,6 +5,7 @@ import CurrentReviews from '../CurrentReviews/CurrentReviews'
 import NewReviewForm from '../NewReviewForm/NewReviewForm'
 import './App.css';
 import { Route } from 'react-router-dom';
+import { getAllReviews } from "../api.js"
 
 
 class App extends Component {
@@ -23,10 +24,9 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3003/api/v1/reviews')
-      .then((response) => response.json())
-      .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
-      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    getAllReviews()
+    .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
+    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
   addReview = (e) => {

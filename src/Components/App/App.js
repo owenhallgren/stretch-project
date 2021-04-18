@@ -5,7 +5,7 @@ import CurrentReviews from '../CurrentReviews/CurrentReviews'
 import NewReviewForm from '../NewReviewForm/NewReviewForm'
 import './App.css';
 import { Route } from 'react-router-dom';
-import { getAllReviews } from "../api.js"
+import { getAllReviews, updateExistingData } from "../api.js"
 
 
 class App extends Component {
@@ -30,12 +30,9 @@ class App extends Component {
   }
 
   addReview = (e) => {
-    fetch(`http://localhost:3003/api/v1/reviews/accept/${e.target.id}/${this.state.user}`, {
-      method: 'PUT',
-    })
-      .then((response) => response.json())
-      .then((reviews) => this.setState({ openReviews: reviews, filteredReviews: [], filterValue: ''}))
-      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    updateExistingData(`accept/${e.target.id}/${this.state.user}`, 'PUT')
+    .then((reviews) => this.setState({ openReviews: reviews, filteredReviews: [], filterValue: ''}))
+    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
   
 

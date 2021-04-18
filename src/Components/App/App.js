@@ -42,22 +42,16 @@ class App extends Component {
   }
 
   undoReview = (e) => {
-    fetch(`http://localhost:3003/api/v1/reviews/undo/${e.target.id}`, {
-      method: 'PUT'
-    })
-      .then((response) => response.json())
-      .then((reviews) => this.setState({ openReviews: reviews }))
-      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    updateExistingData(`undo/${e.target.id}`, 'PUT')
+    .then((reviews) => this.setState({ openReviews: reviews }))
+    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
 
   cancelReview = (e) => {
-    fetch(`http://localhost:3003/api/v1/reviews/cancel/${e.target.id}`, {
-      method: 'PUT'
-    })
-      .then((response) => response.json())
-      .then((reviews) => this.setState({ openReviews: reviews }))
-      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    updateExistingData(`cancel/${e.target.id}`, 'PUT')
+    .then((reviews) => this.setState({ openReviews: reviews }))
+    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
   }
 
   deleteReview = (e) => {

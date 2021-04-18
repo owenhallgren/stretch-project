@@ -56,6 +56,11 @@ tbody > p {
   border-radius: 5px;;
 }
 
+.dash-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 @media only screen and (min-width: 700px) {
   .table-header {
     margin: 8% 0% 0% 1.5%;

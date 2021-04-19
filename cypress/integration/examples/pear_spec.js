@@ -201,16 +201,17 @@ describe('Posting a Review Request', () => {
   })
 })
 
-describe('Sad Paths', () => {
-  before(() => {
+describe.only('Sad Paths', () => {
+  beforeEach(() => {
     cy.fixture('mockReviews.json')
     .then(reviewData => {
         cy.intercept('GET', 'http://localhost:3003/api/v1/reviews', reviewData)
     })
-    cy.visit('http://localhost:3000/') 
   })
 
   it('Should show an appropriate message if no requests are available ina searched langauge', () => {
+    cy.visit('http://localhost:3000/') 
+
     cy.get('#languageFilter').select('C')
     cy.get('.no-results-message').contains('No reviews available')
   })
@@ -221,28 +222,111 @@ describe('Sad Paths', () => {
       url: 'http://localhost:3003/api/v1/reviews/cancel/1'
     },
       {
-        statusCode: 500,
+        statusCode: 200,
         body:
         [{"username":"JeffShepherd","summary":"this is a summary","email":"mynamejeff@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"","reviewer":"","id":1}
       ]
       });
+      cy.visit('http://localhost:3000/') 
+
     cy.get('#dashBoard').click()
     cy.get('#1.cancel-button').click()
     cy.get('td').contains('no reviews')
   })
 
-  it('If app fails to fetch data, user will recieve an appropriate error', () => {
+  it('If app fails to fetch data on load, user will recieve an appropriate error', () => {
+      cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3003/api/v1/reviews'
+      },
+        {
+          statusCode: 500,
+          body:''
+        });
+        cy.visit('http://localhost:3000/') 
+
+      cy.get('.message').contains('error')
+  })
+ 
+  it('If app fails to accept a review, user will recieve an appropriate error', () => {
     cy.intercept({
-      method: 'GET',
-      url: 'http://localhost:3003/api/v1/reviews'
+      method: 'PUT',
+      url: 'http://localhost:3003/api/v1/reviews/accept/123/Jackson'
     },
       {
         statusCode: 500,
         body:''
       });
-      cy.visit('http://localhost:3000')
+      cy.visit('http://localhost:3000/') 
+      cy.get('.accept-button').last().click()
+      cy.get('#123').click()
       cy.get('.message').contains('error')
   })
+
+  it('If app fails to complete a review, user will recieve an appropriate error', () => {
+    cy.intercept({
+      method: 'PUT',
+      url: 'http://localhost:3003/api/v1/reviews/complete/1'
+    },
+      {
+        statusCode: 500,
+        body:''
+      });
+      cy.visit('http://localhost:3000/') 
+      cy.get('#dashBoard').click()
+      cy.get('#1.complete-button').click()
+      cy.get('.message').contains('error')
+  })
+
+  it('If app fails to cancel a review, user will recieve an appropriate error', () => {
+    cy.intercept({
+      method: 'PUT',
+      url: 'http://localhost:3003/api/v1/reviews/cancel/1'
+    },
+      {
+        statusCode: 500,
+        body:''
+      });
+      cy.visit('http://localhost:3000/') 
+      cy.get('#dashBoard').click()
+      cy.get('#1.cancel-button').click()
+      cy.get('.message').contains('error')
+  })
+
+
+  it('If app fails to undo a review, user will recieve an appropriate error', () => {
+    cy.intercept({
+      method: 'PUT',
+      url: 'http://localhost:3003/api/v1/reviews/undo/333'
+    },
+      {
+        statusCode: 500,
+        body:''
+      });
+      cy.visit('http://localhost:3000/') 
+      cy.get('#dashBoard').click()
+      cy.get('#333.undo-button').click()
+      cy.get('.message').contains('error')
+  })
+
+  it('If app fails to undo a review, user will recieve an appropriate error', () => {
+    cy.intercept({
+      method: 'POST',
+      url: 'http://localhost:3003/api/v1/reviews'
+    },
+      {
+        statusCode: 400,
+        body:''
+      });
+      cy.visit('http://localhost:3000/') 
+      cy.get('#addReq').click()
+      cy.get('select').select('Python')
+      cy.get('input').type('github.com/JoeyMama')
+      cy.get('textarea').type('I need help!')
+      cy.get('button').last().click()
+      cy.get('.message').contains('error')
+  })
+
 
 
 })

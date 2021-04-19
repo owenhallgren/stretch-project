@@ -201,7 +201,7 @@ describe('Posting a Review Request', () => {
   })
 })
 
-describe.only('Sad Paths', () => {
+describe('Sad Paths', () => {
   before(() => {
     cy.fixture('mockReviews.json')
     .then(reviewData => {
@@ -221,7 +221,7 @@ describe.only('Sad Paths', () => {
       url: 'http://localhost:3003/api/v1/reviews/cancel/1'
     },
       {
-        statusCode: 201,
+        statusCode: 500,
         body:
         [{"username":"JeffShepherd","summary":"this is a summary","email":"mynamejeff@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"","reviewer":"","id":1}
       ]
@@ -230,4 +230,19 @@ describe.only('Sad Paths', () => {
     cy.get('#1.cancel-button').click()
     cy.get('td').contains('no reviews')
   })
+
+  it('If app fails to fetch data, user will recieve an appropriate error', () => {
+    cy.intercept({
+      method: 'GET',
+      url: 'http://localhost:3003/api/v1/reviews'
+    },
+      {
+        statusCode: 500,
+        body:''
+      });
+      cy.visit('http://localhost:3000')
+      cy.get('.message').contains('error')
+  })
+
+
 })

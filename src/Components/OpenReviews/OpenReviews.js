@@ -4,9 +4,9 @@ import Form from '../Form/Form'
 import './OpenReviews.css';
 
 
-const OpenReviews = ( {filterValue, openReviews, addReview, filteredReviews, sortByLanguage, noFilteredReviews, sendEmail} ) => {
+const OpenReviews = ( {filterValue, openReviews, addReview, filteredReviews, sortByLanguage, noFilteredReviews, sendEmail, currentUser} ) => {
     const reviewsToMap = filteredReviews.length ? filteredReviews : openReviews
-    const reviews = reviewsToMap.filter(review => !review.reviewer)
+    const reviews = reviewsToMap.filter(review => !review.reviewer && review.username !== currentUser)
     const allReviews = reviews.map(review => {
         return (
             <Card

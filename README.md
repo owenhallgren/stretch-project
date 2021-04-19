@@ -11,7 +11,7 @@ Given our interests in back-end technologies, our group decided to create a ReST
 
 
 Our Project
-In this project, 
+We wanted to solve the problem of junior/inexperinced devs not having a more experienced developer to reach out to, for code reviews. To solve this issue we wanted a community driven application where senior devs can find and accept code review requests. Upon selecting a review it will be added to their personal dashboard where they can see all of their current accepted reviews. Both sides will be given contact information, and are encouraged to reach out and get in touch. When a review is accepted, completed, or canceled the requestor will be notified by email. A reviewer can also fill out their own review requests, as we beleive no matter how much experience you have, you're never done learning. 
 
 
 ## Planning Resources

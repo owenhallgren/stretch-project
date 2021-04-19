@@ -263,5 +263,70 @@ describe.only('Sad Paths', () => {
       cy.get('.message').contains('error')
   })
 
+  it('If app fails to complete a review, user will recieve an appropriate error', () => {
+    cy.intercept({
+      method: 'PUT',
+      url: 'http://localhost:3003/api/v1/reviews/complete/1'
+    },
+      {
+        statusCode: 500,
+        body:''
+      });
+      cy.visit('http://localhost:3000/') 
+      cy.get('#dashBoard').click()
+      cy.get('#1.complete-button').click()
+      cy.get('.message').contains('error')
+  })
+
+  it('If app fails to cancel a review, user will recieve an appropriate error', () => {
+    cy.intercept({
+      method: 'PUT',
+      url: 'http://localhost:3003/api/v1/reviews/cancel/1'
+    },
+      {
+        statusCode: 500,
+        body:''
+      });
+      cy.visit('http://localhost:3000/') 
+      cy.get('#dashBoard').click()
+      cy.get('#1.cancel-button').click()
+      cy.get('.message').contains('error')
+  })
+
+
+  it('If app fails to undo a review, user will recieve an appropriate error', () => {
+    cy.intercept({
+      method: 'PUT',
+      url: 'http://localhost:3003/api/v1/reviews/undo/333'
+    },
+      {
+        statusCode: 500,
+        body:''
+      });
+      cy.visit('http://localhost:3000/') 
+      cy.get('#dashBoard').click()
+      cy.get('#333.undo-button').click()
+      cy.get('.message').contains('error')
+  })
+
+  it('If app fails to undo a review, user will recieve an appropriate error', () => {
+    cy.intercept({
+      method: 'POST',
+      url: 'http://localhost:3003/api/v1/reviews'
+    },
+      {
+        statusCode: 400,
+        body:''
+      });
+      cy.visit('http://localhost:3000/') 
+      cy.get('#addReq').click()
+      cy.get('select').select('Python')
+      cy.get('input').type('github.com/JoeyMama')
+      cy.get('textarea').type('I need help!')
+      cy.get('button').last().click()
+      cy.get('.message').contains('error')
+  })
+
+
 
 })

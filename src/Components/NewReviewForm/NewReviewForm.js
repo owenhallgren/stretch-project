@@ -11,12 +11,7 @@ class NewReviewForm extends Component {
       repo: '',
       displayMessage: ''
     }
-
   }
-
-  // clearInputs = () => {
-  //   this.setState({ summary: '', language: '', repo: '' })
-  // }
 
   handleChange = (data, dataCategory) => {
     this.setState({ [dataCategory]: data })
@@ -25,19 +20,15 @@ class NewReviewForm extends Component {
   submitReview = (event) => {
     event.preventDefault(event)
     if(!this.state.summary || !this.state.language || !this.state.repo) {
-      this.setState({displayMessage: 'Please fill in all fields'})//exits submission as a field is blank
-      // ^^update this with DOM alert to user to fill in field
+
+      this.setState({displayMessage: 'Please fill in all fields'})
+
     } else {
 
       const newReview = {summary: this.state.summary, language: this.state.language, repo: this.state.repo, date: this.getDate()}
       this.setState({displayMessage: 'Request submitted successfully!', summary: '', language: '', repo: ''})
-
       this.props.submitNewReview(newReview)
     }
-
-
-
-
   }
 
   getDate = () => {
@@ -57,7 +48,6 @@ class NewReviewForm extends Component {
   }
 
   render () {
-
     return(
       <section className="new-review-page">
         <h2 className="submit-heading">Submit a new request</h2>

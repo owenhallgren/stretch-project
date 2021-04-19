@@ -4,7 +4,15 @@ A [Front-End Project](https://frontend.turing.io/projects/module-3/stretch.html)
 
 
 ## Overview
-Pear was our stretch project where we were able to choose new technologies that we would learn and implement in a span of 10 days. As front-end students we decided to learn a bit about the backend and learn PostgreSQL and Knex.js.
+_Pear_ is a Turing School of Software and Design Module 3 project. In this project, we are tasked with creating an application of our choosing, using a new technology that we have never used before. We are given full autonomy otherwise, but must complete the minimum viable product (MVP) in 9 days.
+
+Given our interests in back-end technologies, our group decided to create a ReSTful API using Express, Knex, and postgreSQL. We also leveraged the sendGrid library for automated email notifications on the back-end. On the front-end, we used the React framework, as well as React Router for multi-page navigation, and reactjs-pop library for modal popups. Our team also followed test-driven development (TDD) using Cypress for end-to-end testing.
+
+
+
+Our Project
+In this project, 
+
 
 ## Planning Resources
 

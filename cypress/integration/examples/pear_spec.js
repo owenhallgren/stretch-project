@@ -221,7 +221,7 @@ describe('Sad Paths', () => {
       url: 'http://localhost:3003/api/v1/reviews/cancel/1'
     },
       {
-        statusCode: 500,
+        statusCode: 200,
         body:
         [{"username":"JeffShepherd","summary":"this is a summary","email":"mynamejeff@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"","reviewer":"","id":1}
       ]
@@ -231,7 +231,7 @@ describe('Sad Paths', () => {
     cy.get('td').contains('no reviews')
   })
 
-  it('If app fails to fetch data, user will recieve an appropriate error', () => {
+  it('If app fails to fetch data on load, user will recieve an appropriate error', () => {
     cy.intercept({
       method: 'GET',
       url: 'http://localhost:3003/api/v1/reviews'
@@ -241,6 +241,21 @@ describe('Sad Paths', () => {
         body:''
       });
       cy.visit('http://localhost:3000')
+      cy.get('.message').contains('error')
+  })
+
+  it.only('If app fails to accept a review, user will recieve an appropriate error', () => {
+    cy.intercept({
+      method: 'PUT',
+      url: 'http://localhost:3003/api/v1/reviews/accept/123/Jackson'
+    },
+      {
+        statusCode: 500,
+        body:''
+      });
+      cy.visit('http://localhost:3000')
+      cy.get('.accept-button').last().click()
+      cy.get('#123').click()
       cy.get('.message').contains('error')
   })
 

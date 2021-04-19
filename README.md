@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Pear - A Github PR Review Solution
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A [Front-End Project](https://frontend.turing.io/projects/module-3/stretch.html) by [Jeff Shepherd](https://github.com/JeffShepherd), [Owen Hallgren](https://github.com/OwenHallgren), and [Josh Aragon](https://github.com/JoshAragon)
 
-## Available Scripts
 
-In the project directory, you can run:
+## Overview
+Pear was our stretch project where we were able to choose new technologies that we would learn and implement in a span of 10 days. As front-end students we decided to learn a bit about the backend and learn PostgreSQL and Knex.js.
 
-### `npm start`
+## Planning Resources
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* [Github Project Board](https://github.com/owenhallgren/stretch-project/projects/2)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* [Miro (Wireframe)](https://miro.com/app/board/o9J_lKpikHM=/)
 
-### `npm test`
+## Installation Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Install and start the backend [here](https://github.com/owenhallgren/stretch-api)
+2. `$ npm i`
+3. `$ npm start`
 
-### `npm run build`
+If you see Compiled successfully! in your terminal, the application is running and the app can be viewed at http://localhost:3000/ in your browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Learning Goals
+* Learn about backend
+* Solidify React skills
+* Solidify router skills
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Technologies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![react](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![react router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![js](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![node.js](	https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 
-## Learn More
+![html](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![css](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![postgresql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Application Demo
+![app demo](https://gyazo.com/65d1cb55a3a3b809c5c5b00f41d867c2.gif)
+### Home Page
+![home page demo](https://gyazo.com/fb5468f1138527b3c278c061a59758f6.png)
+### Filtering Requests
+![filtering demo](https://gyazo.com/d8bf626920053232dba5bfb75f773218.gif)
 
-### Making a Progressive Web App
+### Mobile View
+![mobile view demo](https://gyazo.com/72648cb22368c8c3b98d036bfd104aab.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+##  Challenges
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Wins

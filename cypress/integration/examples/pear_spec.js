@@ -201,16 +201,17 @@ describe('Posting a Review Request', () => {
   })
 })
 
-describe('Sad Paths', () => {
-  before(() => {
+describe.only('Sad Paths', () => {
+  beforeEach(() => {
     cy.fixture('mockReviews.json')
     .then(reviewData => {
         cy.intercept('GET', 'http://localhost:3003/api/v1/reviews', reviewData)
     })
-    cy.visit('http://localhost:3000/') 
   })
 
   it('Should show an appropriate message if no requests are available ina searched langauge', () => {
+    cy.visit('http://localhost:3000/') 
+
     cy.get('#languageFilter').select('C')
     cy.get('.no-results-message').contains('No reviews available')
   })
@@ -226,25 +227,28 @@ describe('Sad Paths', () => {
         [{"username":"JeffShepherd","summary":"this is a summary","email":"mynamejeff@yahoo.com","language":"Python","date":"02/24/21","repo":"https://github.com/JeffShepherd/Rancid-Tomatillos","status":"","reviewer":"","id":1}
       ]
       });
+      cy.visit('http://localhost:3000/') 
+
     cy.get('#dashBoard').click()
     cy.get('#1.cancel-button').click()
     cy.get('td').contains('no reviews')
   })
 
   it('If app fails to fetch data on load, user will recieve an appropriate error', () => {
-    cy.intercept({
-      method: 'GET',
-      url: 'http://localhost:3003/api/v1/reviews'
-    },
-      {
-        statusCode: 500,
-        body:''
-      });
-      cy.visit('http://localhost:3000')
+      cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3003/api/v1/reviews'
+      },
+        {
+          statusCode: 500,
+          body:''
+        });
+        cy.visit('http://localhost:3000/') 
+
       cy.get('.message').contains('error')
   })
-
-  it.only('If app fails to accept a review, user will recieve an appropriate error', () => {
+ 
+  it('If app fails to accept a review, user will recieve an appropriate error', () => {
     cy.intercept({
       method: 'PUT',
       url: 'http://localhost:3003/api/v1/reviews/accept/123/Jackson'
@@ -253,7 +257,7 @@ describe('Sad Paths', () => {
         statusCode: 500,
         body:''
       });
-      cy.visit('http://localhost:3000')
+      cy.visit('http://localhost:3000/') 
       cy.get('.accept-button').last().click()
       cy.get('#123').click()
       cy.get('.message').contains('error')

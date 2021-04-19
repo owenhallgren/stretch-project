@@ -20,10 +20,10 @@ const Nav = ({resetFilteredReviews, error}) => {
             <Route exact path='/dashboard' render={() => 
               <>
                 <Link to={'/'} className="link">
-                    <button className='logo-button' onClick={() => resetFilteredReviews()}><img className='icon' src={home} alt='home'></img></button>
+                    <button className='logo-button' onClick={() => resetFilteredReviews()}><img className='icon' src={home} alt='home' id='home'></img></button>
                 </Link>
                 <Link to={'/new'} className="link">
-                <button className='logo-button'><img className='icon' src={addReq} alt='new request'></img>t</button>
+                <button className='logo-button' id='addReq'><img className='icon' src={addReq} alt='new request'></img>t</button>
                 </Link>
               </>
             }/>
@@ -31,10 +31,10 @@ const Nav = ({resetFilteredReviews, error}) => {
             <Route exact path='/' render={() => 
               <>
                 <Link to={'/dashboard'} className="link">
-                    <button className='logo-button'><img className='icon' src={toDo} alt='home'></img></button>
+                    <button className='logo-button' id='dashBoard'><img className='icon' src={toDo} alt='dashboard'></img></button>
                 </Link>
                 <Link to={'/new'} className="link">
-                    <button className='logo-button'><img className='icon' src={addReq} alt='new request'></img></button>
+                    <button className='logo-button' id='addReq'><img className='icon' src={addReq} alt='new request'></img></button>
                 </Link>
               </>
             }/>
@@ -42,10 +42,10 @@ const Nav = ({resetFilteredReviews, error}) => {
             <Route exact path='/new' render={() => 
               <>
                 <Link to={'/'} className="link">
-                  <button className='logo-button' onClick={() => resetFilteredReviews()}><img className='icon' src={home} alt='home'></img></button>
+                  <button className='logo-button' onClick={() => resetFilteredReviews()}><img className='icon' src={home} alt='home' id='home'></img></button>
                 </Link>
                 <Link to={'/dashboard'} className="link">
-                    <button className='logo-button'><img src={toDo} className='icon' alt='dashboard'></img></button>
+                    <button className='logo-button' id='dashBoard'><img src={toDo} className='icon' alt='dashboard'></img></button>
                 </Link>
               </>
             }/>

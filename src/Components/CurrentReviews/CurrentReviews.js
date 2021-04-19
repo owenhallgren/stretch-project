@@ -72,7 +72,7 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
 
       <div className='table-container'>
         <h1 className='table-header'>Active Reviews</h1>
-        <table>
+        <table id='active'>
         <thead>
             <tr>
                 <th>Date</th>
@@ -91,7 +91,7 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
       </div>
       <div className='table-container'>
       <h1 className='table-header'>Completed Reviews</h1>
-        <table>
+        <table id='completed'>
         <thead>
             <tr>
                 <th>Date</th>

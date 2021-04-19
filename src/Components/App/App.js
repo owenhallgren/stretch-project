@@ -5,6 +5,7 @@ import CurrentReviews from '../CurrentReviews/CurrentReviews'
 import NewReviewForm from '../NewReviewForm/NewReviewForm'
 import './App.css';
 import { Route } from 'react-router-dom';
+import { getAllReviews, updateExistingData, postNewReview } from "../api.js"
 
 
 class App extends Component {
@@ -23,102 +24,71 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3003/api/v1/reviews')
-      .then((response) => response.json())
-      .then((mockReviews) => this.setState( {openReviews: mockReviews} ))
-      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    getAllReviews()
+    .then((mockReviews) => this.resetOpenReviews(mockReviews))
+    .catch((error) => this.setErrorMessage())
   }
 
   addReview = (e) => {
-    fetch(`http://localhost:3003/api/v1/reviews/accept/${e.target.id}/${this.state.user}`, {
-      method: 'PUT',
-    })
-      .then((response) => response.json())
-      .then((reviews) => this.setState({ openReviews: reviews, filteredReviews: [], filterValue: ''}))
-      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+    updateExistingData(`accept/${e.target.id}/${this.state.user}`, 'PUT')
+    .then((reviews) => this.setState({ openReviews: reviews, filteredReviews: [], filterValue: ''}))
+    .catch((error) => this.setErrorMessage())
   }
-  
+
+  finishReview = (e) => {
+    updateExistingData(`complete/${e.target.id}`, 'PUT')
+    .then((reviews) => this.resetOpenReviews(reviews))
+    .catch((error) => this.setErrorMessage())
+  }
+
+  undoReview = (e) => {
+    updateExistingData(`undo/${e.target.id}`, 'PUT')
+    .then((reviews) => this.resetOpenReviews(reviews))
+    .catch((error) => this.setErrorMessage())
+  }
+
+  cancelReview = (e) => {
+    updateExistingData(`cancel/${e.target.id}`, 'PUT')
+    .then((reviews) => this.resetOpenReviews(reviews))
+    .catch((error) => this.setErrorMessage())
+  }
+
+  deleteReview = (e) => {
+    updateExistingData(`${e.target.id}`, 'DELETE')
+    .then((reviews) => this.resetOpenReviews(reviews))
+    .catch((error) => this.setErrorMessage())
+  }
+
+  submitNewReview = (partialRequest) => {
+    const newRequest = {...partialRequest, username: this.state.username, email: this.state.email, 
+      status: '', reviewer: ''}
+
+    postNewReview(newRequest)
+    .then((review) => this.resetOpenReviews([review[0], ...this.state.openReviews]))
+    .catch((error) => this.setErrorMessage())
+  }
+
+  setErrorMessage = () => {
+    this.setState({error: 'An error has occured. Please try again later.'})
+  }
+
+  resetOpenReviews = (reviews) => {
+    this.setState({ openReviews: reviews })
+  }
 
   sortByLanguage = (language) => {
     const fReviews = this.state.openReviews.filter(review => review.language === language && !review.reviewer)
-    console.log(language)
+
     if(!language) {
-      this.setState({ filteredReviews: [], noFilteredReviews: false, filterValue: language})//fix applied here
+      this.setState({ filteredReviews: [], noFilteredReviews: false, filterValue: language})
     } else if(fReviews.length){
       this.setState({ filteredReviews: fReviews, noFilteredReviews: false, filterValue: language})
     } else if(language !== ''){
       this.setState({ noFilteredReviews: true, filterValue: language })
     } else {
-      this.setState({error: 'An error has occured. Please try again later.'})//remove once done testing
+      this.setState({error: 'An error has occured. Please try again later.'})
     }
   }
-
-  finishReview = (e) => {
-    fetch(`http://localhost:3003/api/v1/reviews/complete/${e.target.id}`, {
-      method: 'PUT'
-    })
-      .then((response) => response.json())
-      .then((reviews) => this.setState({ openReviews: reviews }))
-      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
-  }
-
-  undoReview = (e) => {
-    fetch(`http://localhost:3003/api/v1/reviews/undo/${e.target.id}`, {
-      method: 'PUT'
-    })
-      .then((response) => response.json())
-      .then((reviews) => this.setState({ openReviews: reviews }))
-      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
-  }
-
-
-  cancelReview = (e) => {
-    fetch(`http://localhost:3003/api/v1/reviews/cancel/${e.target.id}`, {
-      method: 'PUT'
-    })
-      .then((response) => response.json())
-      .then((reviews) => this.setState({ openReviews: reviews }))
-      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
-  }
-
-
-  submitNewReview = (partialRequest) => {
-    const newRequest = {...partialRequest, username: this.state.username, email: this.state.email, 
-      status: '', reviewer: ''}
-      fetch(`http://localhost:3003/api/v1/reviews`, {
-      method: 'POST',headers: {
-          "Content-Type": "application/json"
-        },
-      body: JSON.stringify({
-        date: newRequest.date,
-        email: newRequest.email,
-        language: newRequest.language, 
-        repo: newRequest.repo,
-        reviewer: newRequest.reviewer,
-        status: newRequest.status,
-        summary: newRequest.summary, 
-        username: newRequest.username
-      })
-    })
-
-      .then((response) => response.json())
-      .then((review) => this.setState({ openReviews:[review[0], ...this.state.openReviews] }))
-      .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
-  }
-
-  deleteReview = (e) => {
-    console.log('deleted', e.target.id)//delete once working
-
-    fetch(`http://localhost:3003/api/v1/reviews/${e.target.id}`, {
-      method: 'DELETE'
-    })
-    .then((response) => response.json())
-    .then((reviews) => this.setState({ openReviews: reviews }))
-    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
-
-  }
-
-
 
 resetFilteredReviews = () => {
   this.setState({ filteredReviews: [], filterValue: ''})

@@ -29,7 +29,6 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
     )
   })
 
-  //below is new
   const myReviews = state.openReviews.filter(review => review.username === state.username && review.status === '')
   const completedRequestTable = myReviews.map(review => {
     return(

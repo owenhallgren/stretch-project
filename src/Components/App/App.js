@@ -113,9 +113,7 @@ sendEmail = (type, e) => {
    .then(response => response.json())
    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))   
  }
-
-
-
+ 
   render() {
     return (
       <main>

@@ -2,10 +2,6 @@ import React from 'react';
 import './Card.css';
 import Modal from '../Modal/Modal'
 
-
-
-
-
 const Card = ( {username, summary, language, date, id, addReview, sendEmail} ) => {
   let path;
   

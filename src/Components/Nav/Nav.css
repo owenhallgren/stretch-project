@@ -1,12 +1,12 @@
 nav {
-    background-color:#333333;
+    background-color:#000804;
     height: 8vh;
     display: flex;
     justify-content: space-between;
 }
 
 .app-logo > h1 {
-  color: white;
+  color: #26F103;
   padding-top: 6%;
   font-family: 'Architects Daughter', cursive;
   font-size: 2.5em;
@@ -56,7 +56,7 @@ nav {
 }
 
 .app-logo > h1 {
-  color: white;
+  color: #26F103;
   margin: 0;
   align-self: center;
 }

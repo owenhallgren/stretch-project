@@ -129,6 +129,7 @@ sendEmail = (type, e) => {
             addReview={this.addReview}
             filterValue={this.state.filterValue}
             sendEmail={this.sendEmail}
+            currentUser={this.state.username}
           />
         }/>
         <Route exact path='/dashboard' render={() => 

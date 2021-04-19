@@ -5,10 +5,12 @@
 .accept-button {
   border-radius: 5px;
   height: 75%;
-  border: 1px solid #1F4534;
+  border: 1px solid #000804;
   cursor: pointer;
-  background-color: #A7E3D9;
+  background-color: #000804;
+  color: #26F103;
   outline: none;
+  font-family: 'Roboto', sans-serif;
 }
 
 .accept-button:hover {
@@ -66,7 +68,7 @@
   background: #fff;
   width: 75%;
   padding: 5px;
-  border: 5px solid #A7E3D9;
+  border: 5px solid #000804;
   border-radius: 5px;
 }
 
@@ -74,8 +76,9 @@
   height: 3em;
   width: 7em;
   border-radius: 6px;
-  border: 1px solid #1F4534;
-  background-color: #A7E3D9;
+  border: 1px solid #000804;
+  background-color: #000804;
+  color: #26F103;
 }
 
 .review-button:hover {

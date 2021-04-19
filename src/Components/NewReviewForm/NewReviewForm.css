@@ -30,10 +30,10 @@
   border-radius: 5px;
   border: 1px solid #1F4534;
   cursor: pointer;
-  background-color: #A7E3D9;
+  background-color: #26F103;
   outline: none;
 }
 
 .new-review-form > button:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
 }

@@ -13,9 +13,9 @@ table {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-thead tr {
-  background-color: #A7E3D9;
-  color: #ffffff;
+thead tr th {
+  background-color: #000804;
+  color: #26F103;
   text-align: left;
 }
 
@@ -26,8 +26,7 @@ table td {
 
 table tbody tr {
   border-bottom: 1px solid #dddddd;
-  background-color: #f3f3f3;
-
+  background-color: #F6F8F7;
 }
 
 tbody > p {
@@ -41,7 +40,7 @@ tbody > p {
 }
 
 .empty-review-table {
-  background-color: #F69373;
+  background-color: #F6F8F7;
   border: none;
 }
 

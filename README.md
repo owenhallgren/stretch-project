@@ -60,4 +60,19 @@ If you see Compiled successfully! in your terminal, the application is running a
 
 ##  Challenges
 
+- Utilizing a postgreSQL database for the first time
+- Leveraging Knex libraries and the intricate configurations involved
+- Brief timeline to learn, and implement, new technologies
+- All team members having to attend medical or COVID vaccine appointments
+
 ## Wins
+
+- Implementing multiple new technologies in a brief period
+- Adding a feature to send email notifications when the status of a review changes
+- Surpassing the MVP
+
+## Future Iterations
+
+- Integrate login page with credential checking
+- Gamify app to make users more likely to review other's requests
+- Refactor application to use React hooks

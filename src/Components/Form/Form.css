@@ -7,14 +7,12 @@ select, label {
   margin: auto 1%;
 }
 
-
 .filter-form {
   width: 200px;
   display: flex;
   justify-content: center;
 
 }
-
 
 @media only screen and (min-width: 700px) {
   .filter-form {

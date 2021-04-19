@@ -86,8 +86,6 @@
   transform: scale(1.1)
 }
 
-
-
 @media only screen and (min-width: 700px) {
   .popup-content {
     width: 60%;

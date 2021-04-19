@@ -48,14 +48,14 @@ If you see Compiled successfully! in your terminal, the application is running a
 ## Features
 
 ### Application Demo
-![app demo](https://gyazo.com/65d1cb55a3a3b809c5c5b00f41d867c2.gif)
+![app demo](https://i.gyazo.com/566584f0ce473f66542a6d4f4b2da9c9.gif)
 ### Home Page
-![home page demo](https://gyazo.com/fb5468f1138527b3c278c061a59758f6.png)
+![home page demo](https://gyazo.com/018d19acf0c685e7f5d7a3b000c555bd.png)
 ### Filtering Requests
-![filtering demo](https://gyazo.com/d8bf626920053232dba5bfb75f773218.gif)
+![filtering demo](https://i.gyazo.com/da00a9a3b8aba219d0081a56d7c25dd0.gif)
 
 ### Mobile View
-![mobile view demo](https://gyazo.com/72648cb22368c8c3b98d036bfd104aab.png)
+![mobile view demo](https://gyazo.com/4cc2d1b18b4c6bc1324ed298cd9c9c6a.png)
 
 
 ##  Challenges

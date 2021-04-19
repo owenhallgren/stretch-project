@@ -8,10 +8,7 @@ _Pear_ is a Turing School of Software and Design Module 3 project. In this proje
 
 Given our interests in back-end technologies, our group decided to create a ReSTful API using Express, Knex, and postgreSQL. We also leveraged the sendGrid library for automated email notifications on the back-end. On the front-end, we used the React framework, as well as React Router for multi-page navigation, and reactjs-pop library for modal popups. Our team also followed test-driven development (TDD) using Cypress for end-to-end testing.
 
-
-
-Our Project
-We wanted to solve the problem of junior/inexperinced devs not having a more experienced developer to reach out to, for code reviews. To solve this issue we wanted a community driven application where senior devs can find and accept code review requests. Upon selecting a review it will be added to their personal dashboard where they can see all of their current accepted reviews. Both sides will be given contact information, and are encouraged to reach out and get in touch. When a review is accepted, completed, or canceled the requestor will be notified by email. A reviewer can also fill out their own review requests, as we beleive no matter how much experience you have, you're never done learning. 
+We wanted to solve the problem of junior/inexperienced devs not having a more experienced developer to reach out to, for code reviews. To solve this issue we wanted a community driven application where senior devs can offer a helping hand for review requests. Upon selecting a review it will be added to their personal dashboard where they can see all of their current accepted reviews. Both sides will be given contact information, and are encouraged to reach out and get in touch. When a review is accepted, completed, or canceled the requestor will be notified by email. A reviewer can also fill out their own review requests, as we believe no matter how much experience you have, you're never done learning. 
 
 
 ## Planning Resources

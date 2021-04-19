@@ -9,20 +9,19 @@ const OpenReviews = ( {filterValue, openReviews, addReview, filteredReviews, sor
     const reviews = reviewsToMap.filter(review => !review.reviewer && review.username !== currentUser)
     const allReviews = reviews.map(review => {
         return (
-            <Card
-                username={review.username}
-                summary={review.summary}
-                language={review.language}
-                date={review.date}
-                id={review.id}
-                key={review.id}
-                addReview={addReview}
-                sendEmail={sendEmail}
-            />
+          <Card
+              username={review.username}
+              summary={review.summary}
+              language={review.language}
+              date={review.date}
+              id={review.id}
+              key={review.id}
+              addReview={addReview}
+              sendEmail={sendEmail}
+          />
         )
-    })
+      })
     return (
-
         <div>
           <div className="header-container">
             <h2 className='open-review-header'>Open Review Requests</h2>

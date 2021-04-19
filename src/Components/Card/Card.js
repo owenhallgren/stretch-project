@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal'
 
 
 
-const Card = ( {username, summary, language, date, id, addReview} ) => {
+const Card = ( {username, summary, language, date, id, addReview, sendEmail} ) => {
   let path;
   
   if(language === 'C#') {
@@ -20,7 +20,7 @@ const Card = ( {username, summary, language, date, id, addReview} ) => {
           <div className='card-top'>
             <img src={`https://avatars.githubusercontent.com/${username}`} className='user-picture' alt='github profile'></img>
             
-            <Modal addReview={addReview} id={id}/>
+            <Modal addReview={addReview} id={id} sendEmail={sendEmail}/>
           </div>
             <p><strong>Username:</strong> {username}</p>
             <p><strong>Summary:</strong> {summary}</p>

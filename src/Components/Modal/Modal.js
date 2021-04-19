@@ -2,7 +2,7 @@ import React from 'react'
 import Popup from 'reactjs-popup'
 import './Modal.css'
 
-const Modal = ({addReview, id}) => { 
+const Modal = ({addReview, id, sendEmail}) => { 
   return (
     <Popup
     trigger={<button className="accept-button"> Accept Review </button>}
@@ -22,7 +22,7 @@ const Modal = ({addReview, id}) => {
           Thank you!
         </div>
         <div className="actions">
-          <button id={id} className='review-button' onClick = {(e) => addReview(e)}> 
+          <button id={id} className='review-button' onClick = {(e) => {addReview(e); sendEmail('accepted', e)}}> 
           Confirm 
           </button>
         </div>

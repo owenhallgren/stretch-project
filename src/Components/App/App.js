@@ -94,6 +94,27 @@ resetFilteredReviews = () => {
   this.setState({ filteredReviews: [], filterValue: ''})
 }
 
+sendEmail = (type, e) => {
+   e.preventDefault();
+   let review = this.state.openReviews.find(review => review.id === parseInt(e.target.id));
+   fetch('http://localhost:3003/api/v1/email', {
+     method: 'POST',
+     headers: {
+         "Content-Type": "application/json"
+       },
+     body: JSON.stringify({
+       email: review.email,
+       type: type,
+       reviewerEmail: this.state.email,
+       username: this.state.username,
+       user: review.username
+     })
+   })
+   .then(response => response.json())
+   .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))   
+ }
+
+
 
   render() {
     return (
@@ -107,6 +128,7 @@ resetFilteredReviews = () => {
             filteredReviews={this.state.filteredReviews}
             addReview={this.addReview}
             filterValue={this.state.filterValue}
+            sendEmail={this.sendEmail}
           />
         }/>
         <Route exact path='/dashboard' render={() => 
@@ -116,6 +138,7 @@ resetFilteredReviews = () => {
           undoReview={this.undoReview} 
           cancelReview={this.cancelReview}
           deleteReview={this.deleteReview}
+          sendEmail={this.sendEmail}
           />
         }/>
         <Route exact path='/new' render={() => 

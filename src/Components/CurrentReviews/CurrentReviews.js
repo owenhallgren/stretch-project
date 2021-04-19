@@ -1,7 +1,7 @@
 import React from 'react'
 import './CurrentReviews.css'
 
-const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, deleteReview} ) => {
+const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, deleteReview, sendEmail} ) => {
   const matchedReviews = state.openReviews.filter(review => review.reviewer === state.user && review.status === 'active')
   const reviewTable = matchedReviews.map(review => {
     return(
@@ -10,8 +10,8 @@ const CurrentReviews = ( { state, finishReview, undoReview, cancelReview, delete
           <td>{review.username}</td>
           <td><a href={review.repo} target='_blank' rel="noreferrer">{review.repo}</a></td>
           <td>{review.email}</td>
-          <td><button title="complete and close this review request" className='complete-button dash-button' id={review.id} onClick={(e) => finishReview(e)}>Complete</button></td>
-          <td><button title="I am unable to complete this review" className='cancel-button dash-button' id={review.id} onClick={(e) => cancelReview(e)}>X</button></td>
+          <td><button title="complete and close this review request" className='complete-button dash-button' id={review.id} onClick={(e) => {finishReview(e); sendEmail('completed', e)}}>Complete</button></td>
+          <td><button title="I am unable to complete this review" className='cancel-button dash-button' id={review.id} onClick={(e) => {cancelReview(e); sendEmail('canceled', e)}}>X</button></td>
       </tr>
     )
   })

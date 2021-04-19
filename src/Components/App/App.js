@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom';
 const sgMail = require('@sendgrid/mail')
 
 const key = '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'
-sgMail.setApiKey(key)
+
 
 
 class App extends Component {
@@ -40,6 +40,26 @@ class App extends Component {
       .then((response) => response.json())
       .then((reviews) => this.setState({ openReviews: reviews, filteredReviews: [], filterValue: ''}))
       .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))
+  }
+
+  sendEmail = (type, e) => {
+    e.preventDefault();
+    let review = this.state.openReviews.find(review => review.id === parseInt(e.target.id));
+    fetch('http://localhost:3003/api/v1/email', {
+      method: 'POST',
+      headers: {
+          "Content-Type": "application/json"
+        },
+      body: JSON.stringify({
+        email: review.email,
+        type: type,
+        reviewerEmail: this.state.email,
+        username: this.state.username,
+        user: review.username
+      })
+    })
+    .then(response => response.json())
+    .catch((error) => this.setState({error: 'An error has occured. Please try again later.'}))    
   }
   
 
@@ -90,7 +110,8 @@ class App extends Component {
     const newRequest = {...partialRequest, username: this.state.username, email: this.state.email, 
       status: '', reviewer: ''}
       fetch(`http://localhost:3003/api/v1/reviews`, {
-      method: 'POST',headers: {
+      method: 'POST',
+      headers: {
           "Content-Type": "application/json"
         },
       body: JSON.stringify({
@@ -141,6 +162,7 @@ resetFilteredReviews = () => {
             filteredReviews={this.state.filteredReviews}
             addReview={this.addReview}
             filterValue={this.state.filterValue}
+            sendEmail={this.sendEmail}
           />
         }/>
         <Route exact path='/dashboard' render={() => 
@@ -150,6 +172,7 @@ resetFilteredReviews = () => {
           undoReview={this.undoReview} 
           cancelReview={this.cancelReview}
           deleteReview={this.deleteReview}
+          sendEmail={this.sendEmail}
           />
         }/>
         <Route exact path='/new' render={() => 

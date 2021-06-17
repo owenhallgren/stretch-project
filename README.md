@@ -53,7 +53,7 @@ If you see Compiled successfully! in your terminal, the application is running a
 ## Features
 
 ### Application Demo
-![app demo](# Pear - A Github PR Review Solution
+![app demo](# Pear - A Github PR Review Solution)
 
-A [Front-End Project](https://frontend.turing.io/projects/module-3/stretch.html) by [Jeff Shepherd](https://github.com/JeffShepherd), [Owen Hallgren](https://github.com/OwenHallgren), and [Josh Aragon](https://github.com/JoshAragon)
+
 
